@@ -1,5 +1,5 @@
 # The Open-Source Cloud Computing Course
-Made with ❤️ by Dan Goodman
+Made with ❤️ by Dan The Goodman
 
 ## What is this?
 
@@ -13,10 +13,13 @@ I hope that through this course I can share that knowledge with you, and you can
 
 Feel free to make a pull request! I'd love to add topics that I haven't yet covered or am not an expert enough in to teach yet.
 
-Made with ❤️ by Dan Goodman
+Made with ❤️ by Dan The Goodman
 
 ## Lessons
 
 1. [Setup and Requirements](/0-setup_and_requirements)
 2. [Intro to Virtual Machines](/1-intro_to_virtual_machines)
 3. [Advanced Virtual Machines](/2-advanced_virtual_machines)
+
+## Contributors
+[Dan The Goodman](https://github.com/danthegoodman1)
