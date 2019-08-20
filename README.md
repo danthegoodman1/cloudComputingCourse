@@ -22,4 +22,7 @@ Made with ❤️ by Dan The Goodman
 3. [Advanced Virtual Machines](/2-advanced_virtual_machines)
 
 ## Contributors
+
+[How do I contribute?](/how-to-contribute)
+
 [Dan The Goodman](https://github.com/danthegoodman1)
