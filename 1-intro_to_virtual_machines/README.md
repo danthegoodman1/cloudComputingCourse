@@ -66,3 +66,46 @@ Your machine will be assigned a public IP that can change, it's not completely s
 ## Put an Example app on the Instance
 
 I am going to use DO for this because it's easier to spin them up/kill them quickly. Plus it's cheaper.
+
+Let's write a simple REST API in Node.js using express:
+
+- Make a folder, and run `npm init -y` in it to initialize the project
+- Run `npm i -s express` to install express
+- Create a file called `index.js` and write the following into it:
+```js
+const express = require('express')
+
+const app = express()
+
+app.get('/', (req, res) => {
+    res.send("Hello World!")
+})
+
+app.listen(8080, () => {
+    console.log("Running on port 8080")
+})
+```
+
+_If you are using GCE (Google Compute Engine) and wondering why you can't connect, it's because you need to make a firewall rule that allows network ingress on this port to your vm instance, we will talk about that later which is why I am using DigitalOcean._
+
+Once you've got that code down, you can run it locally on your machine by using `node index.js`. Now go to your browser and type: `http://localhost:8080` and you should see your message.
+
+Nice work so far!
+
+Now we need to get that code onto the VM, in order to do this we need some carefully crafted commands:
+- `scp index.js root@[your ip]:~/`
+- `scp package.json root@[your ip]:~/`
+
+Let's break these down. SCP is SSH for copying files, so we just copied over the `index.js` file and the `package.json` file. The reason we didn't use a * is because you never want to copy the `node_modules` folder. That can have tens to hundreds of thousands of files, and it would take an absurd amount of time.
+
+Now ssh back into the VM, we gotta run some more commands:
+- `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
+- `sudo apt-get install -y nodejs` Those two will install Node.js 10.x
+- `npm i` to install dependencies
+- `node index.js` to run the app
+
+Now, in your browser, navigate to `http://[your ip]` and you should see your message!
+
+Awesome work! Make sure to delete your VM, and your static IP if you made one so you don't get billed if you aren't using anything (GCP can be tricky to find what is billing you, remember every time you make something otherwise you get hit with a nasty little bill at the end of the month)
+
+##### [Let's move on to the next lesson!](../2-advanced_virtual_machines) <!-- omit in toc -->
