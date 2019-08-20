@@ -109,7 +109,7 @@ Click `Start configuration` under `HTTPS load balancing` and then `Continue` in 
     - port: 80
     - Click `Done`
 
-`Click Create`
+Click `Create`
 
 Now click on your load balancer, and copy in the IP. After waiting for like 10 minutes, navigate to `http://[yourip]` in the browser, and you should get a response.
 
