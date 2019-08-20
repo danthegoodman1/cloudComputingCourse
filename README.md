@@ -3,5 +3,6 @@ By Dan Goodman
 
 ## Lessons
 
+0. [Setup and Requirements](/0-setup_and_requirements)
 1. [Intro to Virtual Machines](/1-intro_to_virtual_machines)
 2. [Advanced Virtual Machines](/2-advanced_virtual_machines)

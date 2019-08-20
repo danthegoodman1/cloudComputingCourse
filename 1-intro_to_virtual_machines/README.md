@@ -4,6 +4,6 @@
 
 1. [Getting Started - DigitalOcean](#getting-started-digitalocean)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
 ## Getting Started: DigitalOcean
+
+## Getting Started: Google Compute Engine
