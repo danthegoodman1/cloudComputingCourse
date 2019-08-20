@@ -11,3 +11,4 @@ In order to work along with this course you will need a few things:
     - If you are just adding your card for the first time on your account you should get $300 credit free for one year
 6. Bash
 7. SSH Keys
+8. THE ABILITY TO GOOGLE YOUR PROBLEMS
