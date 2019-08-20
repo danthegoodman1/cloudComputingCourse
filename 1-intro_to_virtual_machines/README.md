@@ -6,4 +6,4 @@
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-## Getting Started - DigitalOcean
+## Getting Started: DigitalOcean
