@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [Getting Started - DigitalOcean](##getting-started-digitalocean)
+1. [Getting Started - DigitalOcean](#getting-started-digitalocean)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
