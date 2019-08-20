@@ -69,6 +69,8 @@ I am going to use DO for this because it's easier to spin them up/kill them quic
 
 Let's write a simple REST API in Node.js using express:
 
+_I'm not going to put the code in here for this lesson, it's not enough code to have a problem... I hope..._
+
 - Make a folder, and run `npm init -y` in it to initialize the project
 - Run `npm i -s express` to install express
 - Create a file called `index.js` and write the following into it:
