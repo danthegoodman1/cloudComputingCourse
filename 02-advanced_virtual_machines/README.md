@@ -119,4 +119,4 @@ Now keep refreshing, it should change as you get routed to the different workers
 
 Don't forget to delete everything you made, the image, the instance template, instance group, instances, static IPs, and load balancer backend (different tab in load balancer menu), load balancer so you don't get caught in billing
 
-** [Let's go on to the next lesson](../03-severless_functions) **
+**[Let's go on to the next lesson](../03-severless_functions)**
