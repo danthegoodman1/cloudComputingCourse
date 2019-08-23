@@ -5,8 +5,8 @@
 - [What is Serverless?](#what-is-serverless)
 - [Functions, Containers, and Serverless Abstraction](#functions-containers-and-serverless-abstraction)
 - [Getting Started: Firebase](#getting-started-firebase)
-- [Writing your first serverless function](#writing-your-first-serverless-function)
-- [A more advanced serverless function](#a-more-advanced-serverless-function)
+- [Writing Your First Serverless Function](#writing-your-first-serverless-function)
+- [A More Advanced Serverless Function](#a-more-advanced-serverless-function)
 
 ## What is Serverless?
 
@@ -34,7 +34,7 @@ After you have created your project, initialize it in a local folder with the Fi
 
 You should now have a `functions` folder, this is essentially a Node.js project where you define functions that run. `cd` into that folder, and let's get to work
 
-## Writing your first serverless function
+## Writing Your First Serverless Function
 
 Open the `index.js` file that is inside your functions, this is where you will write the entrypoint to all functions. You can still import other files in the same folder if needed.
 
@@ -70,7 +70,7 @@ Great! Now we need to get this on Firebase. Run `firebase deploy` and let that f
 
 If you got that response in your browser, great work!
 
-## A more advanced serverless function
+## A More Advanced Serverless Function
 
 So now you should be able to build an API on Firebase functions if you wanted to, however that would not be a good use case for serverless functions, and it's about the least useful thing a function would be used for. Let's write a function that reacts to a Firestore entry:
 
