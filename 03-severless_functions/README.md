@@ -24,7 +24,7 @@ To learn Serverless, it's actually a bit easier to start with the most amount of
 
 ## Getting Started: Firebase
 
-Head over to the firebase console at https://console.firebase.google.com and create a new project. Firebase projects are GCP projects, at any point in the creation of one, you can choose to link it to the other. Why not link this Firebase project to your GCP project you used in the last lesson if you haven't deleted it?
+Head over to the firebase console at https://console.firebase.google.com and create a new project. Firebase projects are GCP projects, at any point in the creation of one, you can choose to link it to the other. Why not link this Firebase project to your GCP project you used in the last lesson if you haven't deleted it? Also go into the project then from the left menu `Develop > Database > Create Database > Start in Locked Mode > (any location) > Done`, this just enables Firestore from having issues later. Leave this tab up in your browser for now.
 
 After you have created your project, initialize it in a local folder with the Firebase SDK:
 - `firebase init`
@@ -72,4 +72,17 @@ If you got that response in your browser, great work!
 
 ## A more advanced serverless function
 
-So now you should be able to build an API on Firebase functions if you wanted to, however that would not be a good use case for serverless functions, and it's about the least useful thing a function would be used for
+So now you should be able to build an API on Firebase functions if you wanted to, however that would not be a good use case for serverless functions, and it's about the least useful thing a function would be used for. Let's write a function that reacts to a Firestore entry:
+
+```js
+exports.dbReact = functions.firestore.document("{collection}/{document}").onCreate((docSnap, context) => {
+    console.log(`A document named: ${context.params.document} in the collection: ${context.params.collection} was created with data: ${JSON.stringify(docSnap.data())}`)
+    return 0
+})
+```
+
+Deploy to Firestore, and once that finishes go back to that Firestore tab I had you leave open. Click `Start collection`, give it a name, and create a document with some data in it. Now head over to the functions menu, and look at the logs. You should see one from the new `dbReact` function that printed out the information of the collection and document. Firestore is a NoSQL style database that I think is the best in existence, since you can query, and socket for real-time read/write as well. We'll discuss Firestore more later in the course.
+
+Now you can begin to see the power of Serverless Function. My most frequent use of them is to do DB caching for Firestore, so that I can fetch information about total collections/documents without making unnecessary reads/writes. Think about the power of reactive functions, these can respond to pretty much any Google Cloud Platform service action. However, there is a slight difference between Google Cloud Functions and Firebase Functions. Firebase Functions have much better integration with stuff like Firestore, while Google Cloud Functions generally have better integration with the other Google Cloud Products. For example, if you need to respond to Google Cloud Storage, use Google Cloud Functions, since Firebase has it's own version of Cloud Storage that Firebase Functions is the better fit for. Really just google and see which one you need to integrate best with the trigger you need, they are written pretty much identically. 
+
+**[Great work, let's move on to the next lesson]()**
