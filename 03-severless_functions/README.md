@@ -72,7 +72,7 @@ If you got that response in your browser, great work!
 
 ## A More Advanced Serverless Function
 
-So now you should be able to build an API on Firebase functions if you wanted to, however that would not be a good use case for serverless functions, and it's about the least useful thing a function would be used for. Let's write a function that reacts to a Firestore entry:
+So now you should be able to build an API on Firebase functions if you wanted to make a light backend for a website, however that would not be the best case for serverless functions. Let's write a function that reacts to a Firestore entry:
 
 ```js
 exports.dbReact = functions.firestore.document("{collection}/{document}").onCreate((docSnap, context) => {
