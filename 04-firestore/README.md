@@ -1,10 +1,12 @@
-# Lesson 4: Firestore <!-- omit in toc -->
+# Lesson 4: Firestore and NoSQL Data Modeling <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
 - [NoSQL and Firestore](#nosql-and-firestore)
 - [Getting your Access Keys](#getting-your-access-keys)
 - [Listen for Real Time Updates](#listen-for-real-time-updates)
+- [Querying](#querying)
+- [Advanced Querying and Data Modeling](#advanced-querying-and-data-modeling)
 
 ## NoSQL and Firestore
 
@@ -92,3 +94,95 @@ service cloud.firestore {
   }
 }
 ```
+
+This is a very complex process, and this part is less related to cloud computing and more to developing a front end, so I'll just drop some links here:
+
+https://cloud.google.com/firestore/docs/security/get-started
+https://cloud.google.com/firestore/docs/security/rules-conditions
+
+## Querying
+
+Another awesome feature of Firestore is it's advanced querying capabilities. Let's look at a basic query:
+
+```js
+db.collection("someCollection").where("someField", ">=", "someValue").get()
+```
+
+This will return a Query Reference, which is essentially an array of Document References that apply to the query.
+
+We can also compound queries:
+
+```js
+db.collection("someCollection").where("someField", ">", "aSmallValue").where("someField", "<", "aBigValue").get()
+```
+
+Now we will get all values between the ones we specified. What's cool is this also works for JS datetime objects, or Firestore timestamp objects if you need to query by time.
+
+Firestore can also query looking into the fields of document by some other really useful methods, like the ArrayContains method:
+
+```js
+db.collection("someCollection").where("someArray", "array-contains", "someValue").get()
+```
+
+This query will return what documents have an array called `someArray` that has the string `someValue` in it. Pretty neat.
+
+We can also query keys inside of a map (object) inside of a document like so:
+
+```js
+db.collection("someCollection").where("someMap.key", "==", 45).get()
+```
+
+This will return any documents that have a `someMap` object with a key of `key` that has the value `45`.
+
+## Advanced Querying and Data Modeling
+
+It's gets better.
+
+What if we wanted to model a tree in Firestore? Well we can query a tree using the power of Unicode values. Here is a diagram of the tree, this will make sense as we go:
+
+![diagram-tree](/assets/diagram-tree.png)
+
+All of the Letters are a document under the same collection, we will call `tree` in Firestore, like so:
+
+![Screen Shot 2019-08-23 at 10.39.20 AM](/assets/Screen%20Shot%202019-08-23%20at%2010.39.20%20AM.png)
+
+Notice the `parent` field. For B, the parent field is `A`, for C and D, the parent field is `AB`.
+
+We can now query it.
+
+We can get the root of the tree by querying where `parent == false`:
+
+```js
+const root = db.collection("tree").where("parent", "==", false).get()
+```
+
+Then we can get the direct children of a level in the tree by making a compound query based on the Unicode values, so let's write a re-usable function to handle this for us:
+
+```js
+const getChildren = (parentID) => {
+    return db.collection("tree")
+        .where("parent", ">=", parentID)
+        .where("parent", "<=", `${parentID}~`)
+        .get()
+}
+
+getChildren(root.id)
+```
+
+This will get us all of the children of the root: `A`, which should return `B`, `C`, and `D`. This works because of how JS compares strings and Unicode values. If you wanted to only query a certain level of the tree, then you would want to add in an additional document field called `level` that you can query to get children of a certain level.
+
+Say we only wanted the 3rd level down of the tree. Assuming the level of the root is `0`:
+
+```js
+db.collection("tree")
+        .where("parent", ">=", parentID)
+        .where("parent", "<=", `${parentID}~`)
+        .where("level", "==", 2)
+        .get()
+```
+
+This query will return the 3rd level (index 2) of the tree.
+
+Pretty awesome right?
+
+**[Let's move on to the next lesson]()**
