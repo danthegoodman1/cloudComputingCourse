@@ -185,4 +185,6 @@ This query will return the 3rd level (index 2) of the tree.
 
 Pretty awesome right?
 
+This is essentially how geo-querying works. I won't go into that because it is a gross oversimplification of a very complicated topic, but this structure and querying technique is the foundation for many very advanced technologies.
+
 **[Let's move on to the next lesson]()**
