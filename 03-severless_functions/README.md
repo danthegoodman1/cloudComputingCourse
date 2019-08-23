@@ -83,7 +83,7 @@ exports.dbReact = functions.firestore.document("{collection}/{document}").onCrea
 
 Deploy to Firestore, and once that finishes go back to that Firestore tab I had you leave open. Click `Start collection`, give it a name, and create a document with some data in it. Now head over to the functions menu, and look at the logs. You should see one from the new `dbReact` function that printed out the information of the collection and document like this:
 
-
+![Screen Shot 2019-08-23 at 9.44.51 AM](/assets/Screen%20Shot%202019-08-23%20at%209.44.51%20AM.png)
 
 Firestore is a NoSQL style database that I think is the best in existence, since you can query, and socket for real-time read/write as well. We'll discuss Firestore more later in the course.
 
