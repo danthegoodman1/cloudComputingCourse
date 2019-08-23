@@ -81,7 +81,11 @@ exports.dbReact = functions.firestore.document("{collection}/{document}").onCrea
 })
 ```
 
-Deploy to Firestore, and once that finishes go back to that Firestore tab I had you leave open. Click `Start collection`, give it a name, and create a document with some data in it. Now head over to the functions menu, and look at the logs. You should see one from the new `dbReact` function that printed out the information of the collection and document. Firestore is a NoSQL style database that I think is the best in existence, since you can query, and socket for real-time read/write as well. We'll discuss Firestore more later in the course.
+Deploy to Firestore, and once that finishes go back to that Firestore tab I had you leave open. Click `Start collection`, give it a name, and create a document with some data in it. Now head over to the functions menu, and look at the logs. You should see one from the new `dbReact` function that printed out the information of the collection and document like this:
+
+
+
+Firestore is a NoSQL style database that I think is the best in existence, since you can query, and socket for real-time read/write as well. We'll discuss Firestore more later in the course.
 
 Now you can begin to see the power of Serverless Function. My most frequent use of them is to do DB caching for Firestore, so that I can fetch information about total collections/documents without making unnecessary reads/writes. Think about the power of reactive functions, these can respond to pretty much any Google Cloud Platform service action. However, there is a slight difference between Google Cloud Functions and Firebase Functions. Firebase Functions have much better integration with stuff like Firestore, while Google Cloud Functions generally have better integration with the other Google Cloud Products. For example, if you need to respond to Google Cloud Storage, use Google Cloud Functions, since Firebase has it's own version of Cloud Storage that Firebase Functions is the better fit for. Really just google and see which one you need to integrate best with the trigger you need, they are written pretty much identically. 
 
