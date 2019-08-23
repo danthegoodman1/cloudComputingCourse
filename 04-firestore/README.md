@@ -175,10 +175,10 @@ Say we only wanted the 3rd level down of the tree. Assuming the level of the roo
 
 ```js
 db.collection("tree")
-        .where("parent", ">=", parentID)
-        .where("parent", "<=", `${parentID}~`)
-        .where("level", "==", 2)
-        .get()
+    .where("parent", ">=", parentID)
+    .where("parent", "<=", `${parentID}~`)
+    .where("level", "==", 2)
+    .get()
 ```
 
 This query will return the 3rd level (index 2) of the tree.
