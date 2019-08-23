@@ -1,0 +1,15 @@
+{
+  "name": "04-firestore",
+  "version": "1.0.0",
+  "description": "## Table of Contents <!-- omit in toc -->",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/firestore": "^2.2.8"
+  }
+}
