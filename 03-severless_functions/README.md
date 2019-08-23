@@ -1,4 +1,4 @@
-# Lesson 2: Advanced Virtual Machines <!-- omit in toc -->
+# Lesson 3: Serverless Functions <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -89,4 +89,4 @@ Firestore is a NoSQL style database that I think is the best in existence, since
 
 Now you can begin to see the power of Serverless Function. My most frequent use of them is to do DB caching for Firestore, so that I can fetch information about total collections/documents without making unnecessary reads/writes. Think about the power of reactive functions, these can respond to pretty much any Google Cloud Platform service action. However, there is a slight difference between Google Cloud Functions and Firebase Functions. Firebase Functions have much better integration with stuff like Firestore, while Google Cloud Functions generally have better integration with the other Google Cloud Products. For example, if you need to respond to Google Cloud Storage, use Google Cloud Functions, since Firebase has it's own version of Cloud Storage that Firebase Functions is the better fit for. Really just google and see which one you need to integrate best with the trigger you need, they are written pretty much identically. 
 
-**[Great work, let's move on to the next lesson]()**
+**[Great work, let's move on to the next lesson](../04-firestore)**
