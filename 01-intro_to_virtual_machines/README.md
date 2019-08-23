@@ -110,4 +110,4 @@ Now, in your browser, navigate to `http://[your ip]` and you should see your mes
 
 Awesome work! Make sure to delete your VM, and your static IP if you made one so you don't get billed if you aren't using anything (GCP can be tricky to find what is billing you, remember every time you make something otherwise you get hit with a nasty little bill at the end of the month)
 
-**[Let's move on to the next lesson!](../2-advanced_virtual_machines)**
+**[Let's move on to the next lesson!](../02-advanced_virtual_machines)**

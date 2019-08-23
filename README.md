@@ -17,9 +17,10 @@ Made with ❤️ by Dan The Goodman
 
 ## Lessons
 
-1. [Setup and Requirements](/0-setup_and_requirements)
-2. [Intro to Virtual Machines](/1-intro_to_virtual_machines)
-3. [Advanced Virtual Machines](/2-advanced_virtual_machines)
+0. [Setup and Requirements](/00-setup_and_requirements)
+1. [Intro to Virtual Machines](/01-intro_to_virtual_machines)
+2. [Advanced Virtual Machines](/02-advanced_virtual_machines)
+3. [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
 
 ## Contributors
 

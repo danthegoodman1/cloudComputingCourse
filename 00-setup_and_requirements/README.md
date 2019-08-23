@@ -9,6 +9,9 @@ In order to work along with this course you will need a few things:
     - If you have a GitHub Student account you should get $50 credit free
 5. A Google Cloud Platform account with a credit card linked
     - If you are just adding your card for the first time on your account you should get $300 credit free for one year
-6. Bash (at least SSH and SCP which comes with windows by default, but bash is ideal)
-7. SSH Keys
-8. THE ABILITY TO GOOGLE YOUR PROBLEMS
+    - The Google Cloud CLI SDK
+6. A Firebase account linked to the above GCP account
+    - The Firebase CLI SDK
+7. Bash (at least SSH and SCP which comes with windows by default, but bash is ideal)
+8. SSH Keys
+9.  THE ABILITY TO GOOGLE YOUR PROBLEMS
