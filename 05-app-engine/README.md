@@ -1,4 +1,4 @@
-# Lesson 5: App Engine <!-- omit in toc -->
+# Lesson 5: App Engine and Delegated Tasks <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
