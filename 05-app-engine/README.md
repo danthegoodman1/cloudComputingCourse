@@ -4,7 +4,7 @@
 
 - [What is App Engine?](#what-is-app-engine)
 - [Getting Started With App Engine](#getting-started-with-app-engine)
-- [Stepping Up The Game](#stepping-up-the-game)
+- [Stepping Up The Game - Long Running Tasks](#stepping-up-the-game---long-running-tasks)
 
 ## What is App Engine?
 
@@ -55,6 +55,26 @@ Once that is completed (it does take a while), either find the link in the conso
 
 _How cool is that!?_ You just made a hello world app that will scale to the alloted quota you have for VMs in GCP. Better yet it was SSL secured, and is the most mature and capable platform for running a production-grade API from.
 
-## Stepping Up The Game
+## Stepping Up The Game - Long Running Tasks
 
 Alright so we made our nifty little hello world, now it's time to make it do something.
+
+App Engine also has a really great companion service from GCP called `Cloud Tasks`. What Tasks does is run another service of App Engine, that is purely for long-running tasks that don't need to be part of an initial API request/response. Imagine you had an API, and once feature of that API was a very long running process that took minutes, or even hours to calculate something. Once you get the data from the request, you no longer need the connection, so you respond and work on the calculations. The problem is if the same App Engine is used for your main API, as well as this since long-running task, your App Engine service is going to scale (or not scale) based on the amount of work the VMs are doing. If you rarely use the long-running task, but it clogs up the CPU, then your App Engine is going to scale when you don't need it to. I won't go any more into it, but having features scale independent of each other is important, as it saves money and everything runs faster.
+
+So let's make a long running process a Cloud Task.
+
+But I have an idea...
+
+Part of learning to be a good coder, systems architect, or anything in the tech world is being able to figure things out on your own with less help than you'd like. It's how I got to where I am, and no matter what it's going to be how to get to where ever awesome places you are going. So in order to nurture this skill set, I am going to toss you in the deep end and force you to learn to swim.
+
+So here is the documentation: https://cloud.google.com/tasks/docs/how-to-index
+
+Go through the parts: Cloud Tasks Overview, Creating Cloud Tasks Queues, Creating App Engine Tasks, Creating App Engine Task Handlers
+
+It's your first real assignment on your own: Create a main API with App Engine, and this API should delegate some long running task off to a Tasks queue (it can be synthetic, like a long `setTimeout()` function). Then when the task finishes, have it notify you in some way. Whether it emails, texts, or what ever using what ever service you want (IFTTT is quick and easy). Then you are going to show it off next class.
+
+**Requirements:**
+
+Make a simple request to the main API, and delegate to a (synthetic) long running task will alert you after 1 minute with the same data that you sent in the initial request.
+
+**Once you complete this, [we can move on to the next lesson]()**
