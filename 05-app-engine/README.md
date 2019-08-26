@@ -65,16 +65,18 @@ So let's make a long running process a Cloud Task.
 
 But I have an idea...
 
-Part of learning to be a good coder, systems architect, or anything in the tech world is being able to figure things out on your own with less help than you'd like. It's how I got to where I am, and no matter what it's going to be how to get to where ever awesome places you are going. So in order to nurture this skill set, I am going to toss you in the deep end and force you to learn to swim.
+Part of learning to be a good coder, systems architect, or anything in the tech world is being able to figure things out on your own with less help than you'd like. It's how I got to where I am, and no matter what it's going to be how you get to where ever awesome places you are going. So in order to nurture this skill set, I am going to toss you in the deep end and force you to learn to swim.
 
 So here is the documentation: https://cloud.google.com/tasks/docs/how-to-index
 
-Go through the parts: Cloud Tasks Overview, Creating Cloud Tasks Queues, Creating App Engine Tasks, Creating App Engine Task Handlers
+Go through the parts: `Cloud Tasks Overview`, `Creating Cloud Tasks Queues`, `Creating App Engine Tasks`, and `Creating App Engine Task Handlers`
 
-It's your first real assignment on your own: Create a main API with App Engine, and this API should delegate some long running task off to a Tasks queue (it can be synthetic, like a long `setTimeout()` function). Then when the task finishes, have it notify you in some way. Whether it emails, texts, or what ever using what ever service you want (IFTTT is quick and easy). Then you are going to show it off next class.
+It's your first real assignment on your own: Create a main API with App Engine, and this API should delegate some long running task off to a Tasks queue (it can be synthetic, like a long `setTimeout()` function). Then when the task finishes, have it notify you in some way. Whether it emails, texts, or what ever using any service you want (IFTTT is quick and easy). Then you are going to show it off next class.
 
 **Requirements:**
 
-Make a simple request to the main API, and delegate to a (synthetic) long running task will alert you after 1 minute with the same data that you sent in the initial request.
+Make a simple request to a main API, and delegate to a (synthetic) long running task that will alert you after 1 minute with the same data that you sent in the initial request.
+
+_Hint: Why not make it a post request that will eventually alert you with the body of the request?_
 
 **Once you complete this, [we can move on to the next lesson]()**
