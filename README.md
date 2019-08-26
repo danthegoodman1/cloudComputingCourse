@@ -21,6 +21,8 @@ Made with ❤️ by Dan The Goodman
 1. [Intro to Virtual Machines](/01-intro_to_virtual_machines)
 2. [Advanced Virtual Machines](/02-advanced_virtual_machines)
 3. [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
+4. [Firestore and NoSQL Data Modeling](/04-firestore)
+5. [App Engine](/05-app-engine)
 
 ## Contributors
 
