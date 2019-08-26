@@ -53,7 +53,7 @@ Now imagine if deploying your code to App Engine was as simple as running `gclou
 
 Once that is completed (it does take a while), either find the link in the console, or run `gcloud app browse` to have your default browser navigate to your App Engine.
 
-_How cool is that!?_ You just made a hello world app that will scale to the alloted quota you have for VMs in GCP. Better yet it was SSL secured, and is the most mature and capable platform for running a production-grade API from.
+_How cool is that!?_ You just made a hello world app that will scale to the alloted quota you have for VMs in GCP. Better yet it was SSL secured, and is the most mature and capable platform for running a production-grade API.
 
 ## Stepping Up The Game - Long Running Tasks
 
