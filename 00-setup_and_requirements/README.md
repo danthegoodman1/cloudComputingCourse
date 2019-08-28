@@ -14,4 +14,6 @@ In order to work along with this course you will need a few things:
     - The Firebase CLI SDK
 7. Bash (at least SSH and SCP which comes with windows by default, but bash is ideal)
 8. SSH Keys
-9.  THE ABILITY TO GOOGLE YOUR PROBLEMS
+9. Docker
+10. A Dockerhub account
+11. THE ABILITY TO GOOGLE YOUR PROBLEMS
