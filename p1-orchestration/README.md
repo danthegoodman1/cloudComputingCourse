@@ -13,7 +13,7 @@ If you look into the features of the amazing App Engine, you can see they offer 
 
 What if we made VMs that lived and died like Cloud Run containers or serverless functions? Full VMs with no restrictions. Dedicated IP addresses and very high resources spun up and down.
 
-This is something that I prototyped for one of Andy's company projects, TraderEx. The existing codebase needed to have a persistent connection to an instance of the game, so all that was really needed was an infrastructure change.
+This is something that I prototyped for one of Andy's company projects, TraderEx. The existing codebase needed to have a persistent connection to an instance of the game, so all that was really needed was an infrastructure change. And a VM manager API.
 
 ## The Architecture
 
