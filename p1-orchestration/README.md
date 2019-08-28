@@ -42,6 +42,6 @@ If you are using DO then the `do-wrapper` npm package is your friend
 **Extra Credit (/5):**
 - Use GCP entirely: 5 points
 
-You will turn your code in as well, which is associated with no grade (unless you and others have the same code).
+You will turn your code in as well, has no impact on grade unless you cheat with others. Also try not to write spaghetti code.
 
 **This project is done individually.**
