@@ -32,14 +32,14 @@ If you are using DO then the `do-wrapper` npm package is your friend
 
 ## Grading
 
-**Main (x/100)**:
+**Main (/100)**:
 - API can create VMs on command/when required: 20 points
 - API knows when a VM is no longer being used, and destroys VM: 30 points
 - API can show current VMs: 10 points
 - VMs run some sort of persistent service/app: 30 points
 - Bug-free demo: 10 points
 
-**Extra Credit:**
+**Extra Credit (/5):**
 - Use GCP entirely: 5 points
 
 You will turn your code in as well, which is associated with no grade (unless you and others have the same code).
