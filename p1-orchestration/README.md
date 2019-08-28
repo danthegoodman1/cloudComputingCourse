@@ -34,10 +34,11 @@ If you are using DO then the `do-wrapper` npm package is your friend
 
 **Main (/100)**:
 - API can create VMs on command/when required: 20 points
-- API knows when a VM is no longer being used, and destroys VM: 30 points
+- API knows when a VM is no longer being used, and destroys VM: 20 points
 - API can show current VMs: 10 points
-- VMs run some sort of persistent service/app: 30 points
+- VMs run some sort of persistent service/app: 20 points
 - Bug-free demo: 10 points
+- Creativity/Difficulty of project: 20 points
 
 **Extra Credit (/5):**
 - Use GCP entirely: 5 points
