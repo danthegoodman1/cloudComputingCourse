@@ -40,8 +40,8 @@ If you are using DO then the `do-wrapper` npm package is your friend
 - Bug-free demo: 10 points
 - Creativity/Difficulty of project: 20 points
 
-**Extra Credit (/5):**
-- Use GCP entirely: 5 points
+**Extra Credit:**
+- Use GCP entirely: 2 points
 
 You will turn your code in as well, has no impact on grade unless you cheat with others. Also try not to write spaghetti code.
 
