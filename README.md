@@ -17,13 +17,21 @@ Made with ❤️ by Dan The Goodman
 
 ## Modules
 
-0. [Setup and Requirements](/00-setup_and_requirements)
-1. [Intro to Virtual Machines](/01-intro_to_virtual_machines)
-2. [Advanced Virtual Machines](/02-advanced_virtual_machines)
-3. [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
-4. [Firestore and NoSQL Data Modeling](/04-firestore)
-5. [App Engine and Delegated Tasks](/05-app_engine)
-6. [Docker Intro](/06-docker_intro)
+0.  [Setup and Requirements](/00-setup_and_requirements)
+1.  [Intro to Virtual Machines](/01-intro_to_virtual_machines)
+2.  [Advanced Virtual Machines](/02-advanced_virtual_machines)
+3.  [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
+4.  [Firestore and NoSQL Data Modeling](/04-firestore)
+5.  [App Engine and Delegated Tasks](/05-app_engine)
+6.  [Docker Intro](/06-docker_intro)
+P1. [Project 1: VM orchestration](/p1-orchestration)
+7.  [Cloud Run and Stateless Containers](/07-cloud_run)
+8.  [Google Kubernetes Engine](/08-gke)
+9.  [RancherOS - Building your own Kubernetes Cluster](/09-rancher)
+10. [Pub/Sub & MQTT - Cloud Messaging](/10-pubsub)
+11. [Cloud Storage - Objects in the Cloud](/11-cloud_storage)
+P2. [Project 2: TBD](/p2-)
+12. [DialogFlow - Build your own assitant](/12-dialogflow)
 
 ## Contributors
 
