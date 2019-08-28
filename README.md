@@ -15,7 +15,7 @@ Feel free to make a pull request! I'd love to add topics that I haven't yet cove
 
 Made with ❤️ by Dan The Goodman
 
-## Lessons
+## Modules
 
 0. [Setup and Requirements](/00-setup_and_requirements)
 1. [Intro to Virtual Machines](/01-intro_to_virtual_machines)

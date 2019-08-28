@@ -1,5 +1,5 @@
 
-# Lesson 1: Intro to Virtual Machines <!-- omit in toc -->
+# Module 1: Intro to Virtual Machines <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -14,7 +14,7 @@ Maintaining hardware is... *hard*. Networking is *hard*. There is a reason that 
 
 The point? It is far more worth your time to let someone else deal with the low level hardware and networking, and just have platforms (with various levels of control, virtual machines giving you the most) that you can _drop code on and run it._
 
-*In this lesson* we will be learning about my two favorite Virtual Machine hosts (Google Compute Engine and DigitalOcean), how to get *securely* setup on each platform, how to put a web application on the virtual machine, and how to expose that machine to the world.
+*In this Module* we will be learning about my two favorite Virtual Machine hosts (Google Compute Engine and DigitalOcean), how to get *securely* setup on each platform, how to put a web application on the virtual machine, and how to expose that machine to the world.
 
 I'd also like to mention that while DigitalOcean can be used for production infrastructure (I and many other people have), it is better suited to development. This will become more obvious why as you go through the course but it is mostly for inter-service communication and orchestration.
 
@@ -69,7 +69,7 @@ I am going to use DO for this because it's easier to spin them up/kill them quic
 
 Let's write a simple REST API in Node.js using express:
 
-_I'm not going to put the code in here for this lesson, it's not enough code to have a problem... I hope..._
+_I'm not going to put the code in here for this Module, it's not enough code to have a problem... I hope..._
 
 - Make a folder, and run `npm init -y` in it to initialize the project
 - Run `npm i -s express` to install express
@@ -110,4 +110,4 @@ Now, in your browser, navigate to `http://[your ip]` and you should see your mes
 
 Awesome work! Make sure to delete your VM, and your static IP if you made one so you don't get billed if you aren't using anything (GCP can be tricky to find what is billing you, remember every time you make something otherwise you get hit with a nasty little bill at the end of the month)
 
-**[Let's move on to the next lesson!](../02-advanced_virtual_machines)**
+**[Let's move on to the next Module!](../02-advanced_virtual_machines)**

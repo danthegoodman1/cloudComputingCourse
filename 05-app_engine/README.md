@@ -1,4 +1,4 @@
-# Lesson 5: App Engine and Delegated Tasks <!-- omit in toc -->
+# Module 5: App Engine and Delegated Tasks <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -79,4 +79,4 @@ Make a simple request to a main API, and delegate to a (synthetic) long running 
 
 _Hint: Why not make it a post request that will eventually alert you with the body of the request?_
 
-**Once you complete this, [we can move on to the next lesson](../06-docker_intro)**
+**Once you complete this, [we can move on to the next Module](../06-docker_intro)**

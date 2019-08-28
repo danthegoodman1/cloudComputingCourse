@@ -1,4 +1,4 @@
-# Lesson 6: An Intro to Docker <!-- omit in toc -->
+# Module 6: An Intro to Docker <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -104,4 +104,4 @@ Alright get a partner, or someone else who has Docker installed. Tell them to pu
 
 Hopefully you understand the basics of Docker and how you can use it's functionality. Now I want you to try to build something more substantial, and bring it to next class.
 
-**Once we've done that, [We can move on to the next lesson.]()**
+**Once we've done that, [We can move on to the next Module.]()**

@@ -1,4 +1,4 @@
-# Lesson 3: Serverless Functions <!-- omit in toc -->
+# Module 3: Serverless Functions <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -14,7 +14,7 @@ The term serverless is a very bad misnomer. What does serverless require? _Lots 
 
 ## Functions, Containers, and Serverless Abstraction
 
-As mentioned above, serverless is all about abstraction. Let's look at the example of the VM cluster we made last lesson, that was the least abstracted we could be. While the connection was VM instance abstracted, everything else was not. We chose the VM OS, VM specs, Networking, Disk, etc. TL;DR We chose everything about it besides the literal hardware.
+As mentioned above, serverless is all about abstraction. Let's look at the example of the VM cluster we made last Module, that was the least abstracted we could be. While the connection was VM instance abstracted, everything else was not. We chose the VM OS, VM specs, Networking, Disk, etc. TL;DR We chose everything about it besides the literal hardware.
 
 The next level of abstraction is Containers. Containers are basically mini-VMs that run far lighter than normal VMs by sharing a Kernel (and some other magic). Containers essentially make your code completely portable to drop onto anything that can run Docker (or what ever container platform you are using). With containers, you still choose a lot. You choose what OS is running on the container, what is installed, the specs, networking (some of these things like networking and specs are mostly handled by cloud providers). This tends to be the sweet spot, because you get almost all of the benefits of a VM, with the portability that containers allow.
 
@@ -24,7 +24,7 @@ To learn Serverless, it's actually a bit easier to start with the most amount of
 
 ## Getting Started: Firebase
 
-Head over to the firebase console at https://console.firebase.google.com and create a new project. Firebase projects are GCP projects, at any point in the creation of one, you can choose to link it to the other. Why not link this Firebase project to your GCP project you used in the last lesson if you haven't deleted it? Also go into the project then from the left menu `Develop > Database > Create Database > Start in Locked Mode > (any location) > Done`, this just enables Firestore from having issues later. Leave this tab up in your browser for now.
+Head over to the firebase console at https://console.firebase.google.com and create a new project. Firebase projects are GCP projects, at any point in the creation of one, you can choose to link it to the other. Why not link this Firebase project to your GCP project you used in the last Module if you haven't deleted it? Also go into the project then from the left menu `Develop > Database > Create Database > Start in Locked Mode > (any location) > Done`, this just enables Firestore from having issues later. Leave this tab up in your browser for now.
 
 After you have created your project, initialize it in a local folder with the Firebase SDK:
 - `firebase init`
@@ -89,4 +89,4 @@ Firestore is a NoSQL style database that I think is the best in existence, since
 
 Now you can begin to see the power of Serverless Function. My most frequent use of them is to do DB caching for Firestore, so that I can fetch information about total collections/documents without making unnecessary reads/writes. Think about the power of reactive functions, these can respond to pretty much any Google Cloud Platform service action. However, there is a slight difference between Google Cloud Functions and Firebase Functions. Firebase Functions have much better integration with stuff like Firestore, while Google Cloud Functions generally have better integration with the other Google Cloud Products. For example, if you need to respond to Google Cloud Storage, use Google Cloud Functions, since Firebase has it's own version of Cloud Storage that Firebase Functions is the better fit for. Really just google and see which one you need to integrate best with the trigger you need, they are written pretty much identically. 
 
-**[Great work, let's move on to the next lesson](../04-firestore)**
+**[Great work, let's move on to the next Module](../04-firestore)**

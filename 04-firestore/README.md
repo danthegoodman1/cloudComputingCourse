@@ -1,4 +1,4 @@
-# Lesson 4: Firestore and NoSQL Data Modeling <!-- omit in toc -->
+# Module 4: Firestore and NoSQL Data Modeling <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -187,4 +187,4 @@ Pretty awesome right?
 
 This is essentially how geo-querying works. I won't go into that because it is a gross oversimplification of a very complicated topic, but this structure and querying technique is the foundation for many very advanced technologies.
 
-**[Let's move on to the next lesson]()**
+**[Let's move on to the next Module]()**
