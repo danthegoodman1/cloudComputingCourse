@@ -102,6 +102,6 @@ Alright get a partner, or someone else who has Docker installed. Tell them to pu
 
 ## Another Assignment
 
-Hopefully you understand the basics of Docker and how you can use it's functionality. Now I want you to build something more substantial, and bring it to next class.
+Hopefully you understand the basics of Docker and how you can use it's functionality. Now I want you to try to build something more substantial, and bring it to next class.
 
 **Once we've done that, [We can move on to the next lesson.]()**
