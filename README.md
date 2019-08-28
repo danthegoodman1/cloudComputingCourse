@@ -17,12 +17,13 @@ Made with ❤️ by Dan The Goodman
 
 ## Lessons
 
-1. [Setup and Requirements](/00-setup_and_requirements)
-2. [Intro to Virtual Machines](/01-intro_to_virtual_machines)
-3. [Advanced Virtual Machines](/02-advanced_virtual_machines)
-4. [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
-5. [Firestore and NoSQL Data Modeling](/04-firestore)
-6. [App Engine and Delegated Tasks](/05-app_engine)
+0. [Setup and Requirements](/00-setup_and_requirements)
+1. [Intro to Virtual Machines](/01-intro_to_virtual_machines)
+2. [Advanced Virtual Machines](/02-advanced_virtual_machines)
+3. [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
+4. [Firestore and NoSQL Data Modeling](/04-firestore)
+5. [App Engine and Delegated Tasks](/05-app_engine)
+6. [Docker Intro](/06-docker_intro)
 
 ## Contributors
 
