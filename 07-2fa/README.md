@@ -154,11 +154,9 @@ Now if you're interested in how you might show the QR code again, it's quite eas
 
 ```js
 { ascii: '&BMBKl7TzOct(S1)isZU<5kb2N:Mn@ha',
-  hex:
-   '26424d424b6c37547a4f63742853312969735a553c356b62324e3a4d6e406861',
+  hex: '26424d424b6c37547a4f63742853312969735a553c356b62324e3a4d6e406861',
   base32: 'EZBE2QSLNQ3VI6SPMN2CQUZRFFUXGWSVHQ2WWYRSJY5E23SANBQQ',
-  otpauth_url:
-   'otpauth://totp/SecretKey?secret=EZBE2QSLNQ3VI6SPMN2CQUZRFFUXGWSVHQ2WWYRSJY5E23SANBQQ' }
+  otpauth_url: 'otpauth://totp/SecretKey?secret=EZBE2QSLNQ3VI6SPMN2CQUZRFFUXGWSVHQ2WWYRSJY5E23SANBQQ' }
 ```
 
 _You can also see in this why we don't like using the ascii version..._
