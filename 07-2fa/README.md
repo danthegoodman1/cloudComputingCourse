@@ -61,10 +61,88 @@ Now run this, provide it with your 2FA code from your authenticator app. Now you
 
 ## Protect Something with it
 
-Now we actually are going to use 2FA to protect something. Let's protect an endpoint that contains some information. We will access this endpoint through a simple HTML web page. So first we need to build some endpoints in our web app. First let's make thew `/` endpoint that will load the initial web page:
+Now we actually are going to use 2FA to protect something. Let's protect an endpoint that contains some information. We will access this endpoint through a simple HTML web page.
+
+First we need a new dependency to parse JSON from the front end:
 
 ```js
-app.get("/", (req, res) => {
-    
+const app = require("express")()
+const speakeasy = require('speakeasy')
+const fs = require('fs')
+const bodyParser = require("body-parser")
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+```
+
+Now we need an endpoint that will send the inital webpage:
+```js
+app.get("/", (req, res) => { // Send the web page
+    res.sendFile("./index.html", { root: __dirname })
 })
+```
+
+Next we need to have a login endpoint that will accept incoming `POST` requests to login:
+
+```js
+app.post("/login", (req, res) => {
+    const { username, password, twofa } = req.body
+    if (!username || !password || !twofa) { // If missing info
+        console.log("Missing info")
+        res.status(400).send("Missing info")
+        return
+    }
+    const thePass = "password" // Never hard code this, but we are not showing password security here...
+    const theUser = "username"
+    if (theUser === username && thePass === password) {
+        const base32secret = fs.readFileSync('./b32.txt', {encoding: 'utf-8'})
+        const verified = speakeasy.totp.verify({
+            secret: base32secret,
+            encoding: 'base32',
+            token: twofa
+        })
+        if (verified) {
+            res.send("This is the secret endpoint info!")
+        } else {
+            res.status(401).send("Unauthorized")
+        }
+    } else {
+        res.status(401).send("Unauthorized")
+    }
+})
+```
+
+Finally, we need to listen for connections:
+
+```js
+app.listen(8080, () => {
+    console.log("listening on 8080")
+})
+```
+
+I'll let you build the html part, but here is the `POST` request that goes with the backend:
+
+```html
+<script>
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username,
+            password,
+            twofa
+        })
+    })
+    .then((response) => {
+        return response.text()
+    })
+    .then((response) => {
+        document.write(response)
+    })
+    .catch((err) => {
+        console.error(err)
+    })
+</script>
 ```
