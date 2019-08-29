@@ -150,4 +150,25 @@ fetch("/login", {
 
 Once you write the rest of the HTML, you should be able to "login" with your 2FA code and get the "secret endpoint info".
 
+Now if you're interested in how you might show the QR code again, it's quite easy. Here is the object that is generated when you make a 2FA key:
+
+```js
+{ ascii: '&BMBKl7TzOct(S1)isZU<5kb2N:Mn@ha',
+  hex:
+   '26424d424b6c37547a4f63742853312969735a553c356b62324e3a4d6e406861',
+  base32: 'EZBE2QSLNQ3VI6SPMN2CQUZRFFUXGWSVHQ2WWYRSJY5E23SANBQQ',
+  otpauth_url:
+   'otpauth://totp/SecretKey?secret=EZBE2QSLNQ3VI6SPMN2CQUZRFFUXGWSVHQ2WWYRSJY5E23SANBQQ' }
+```
+
+_You can also see in this why we don't like using the ascii version..._
+
+As you can see, the `otpath_url` is no more than the `base32` secret that we saved appended to `otpauth://totp/SecretKey?secret=`. So if you ever need to recreate that data to pass into a QR code generator, just use this string formatter:
+
+```js
+`otpauth://totp/SecretKey?secret=${base32Secret}`
+```
+
+You could also create your own by just base32 encoding 32 random printable characters.
+
 **[Now let's move on to the next lesson]()**
