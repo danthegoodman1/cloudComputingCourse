@@ -7,6 +7,7 @@
 - [Getting Started: DigitalOcean](#getting-started-digitalocean)
 - [Getting Started: Google Compute Engine](#getting-started-google-compute-engine)
 - [Put an Example app on the Instance](#put-an-example-app-on-the-instance)
+- [Basic SQlite3 interaction](#basic-sqlite3-interaction)
 
 ## Why We Use Virtual Machines
 
@@ -109,5 +110,163 @@ Now ssh back into the VM, we gotta run some more commands:
 Now, in your browser, navigate to `http://[your ip]` and you should see your message!
 
 Awesome work! Make sure to delete your VM, and your static IP if you made one so you don't get billed if you aren't using anything (GCP can be tricky to find what is billing you, remember every time you make something otherwise you get hit with a nasty little bill at the end of the month)
+
+## Basic SQlite3 interaction
+
+Alright so now let's add ad database real fast. SQLite3 is useful for quick stuff and is very stable. To add SQLite3, run:
+`npm i -s sqlite3 sequelize`
+
+`sequelize` is the library that we will be using to interface with SQL style databases _(Which I hate, full disclaimer, but its fast and stable for quick stuff like this)_.
+
+Now we need to add it to our sample API, your file should now look like this:
+
+```js
+const express = require('express')
+
+const app = express()
+
+// BEGIN NEW CHUNK
+const Sequelize = require('sequelize')
+const sequelize = new Sequelize('database', 'username', 'password', {
+    host: 'localhost',
+    dialect: 'sqlite',
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    },
+    storage: './database.sqlite'
+})
+
+sequelize.authenticate()
+.then(() => {
+    console.log('Connection to SQLite3 has been established successfully.')
+})
+.catch(err => {
+    console.error('Unable to connect to the database:', err)
+})
+
+// Define a DB model
+const User = sequelize.define('user', {
+    firstName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: null
+    },
+    lastName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: null
+    },
+    userName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+    }
+})
+
+User.sync()
+.then(() => {
+    return User.findAll()
+})
+.then(users => {
+    // users.destroy({force: true}) // If we need to delete the DB entries later
+    console.log(`\n\n${users.length} users in db\n\n`)
+    return User.findOrCreate({ where: { username: 'admin' }, defaults: { userName: 'admin', firstName: 'Dan', lastName: 'Goodman' } })
+})
+.then(([user, created]) => {
+    if (created) {
+        console.log('created the admin user')
+    } else {
+        console.log('admin user already existed')
+    }
+})
+.catch((err) => {
+    if (err.name === 'SequelizeUniqueConstraintError') {
+        console.log('error')
+        // This is how we handle sequelize errors
+    }
+    console.error(err)
+})
+
+// END NEW CHUNK
+
+app.get('/', (req, res) => {
+    res.send("Hello World!")
+})
+
+app.get('/get/:username', (req, res) => {
+    User.findOne({
+        where: {
+            username: req.params.username
+        }
+    })
+    .then((found) => {
+        console.log(found || "User not found!")
+        res.send(found || "User not found!")
+    })
+    .catch((err) => {
+        console.log(err)
+        res.send("User not found!")
+    })
+})
+
+app.get('/updateFirst/:username/:newFirst', (req, res) => {
+    User.findOne({
+        where: {
+            username: req.params.username
+        }
+    })
+    .then((found) => {
+        return found.update({ firstName: req.params.newFirst })
+    })
+    .then(() => {
+        console.log(`Updated to ${req.params.newFirst}`)
+        res.send(`Updated to ${req.params.newFirst}`)
+    })
+    .catch((err) => {
+        console.log(err)
+        res.send("User not found!")
+    })
+})
+
+app.get('/delete/:username', (req, res) => {
+    User.findOne({
+        where: {
+            username: req.params.username
+        }
+    })
+    .then((found) => {
+        return found.destroy()
+    })
+    .then(() => {
+        console.log(`deleted ${req.params.username}`)
+        res.send(`deleted ${req.params.username}`)
+    })
+    .catch((err) => {
+        console.log(err)
+        res.send("User not found!")
+    })
+})
+
+app.get('/create/:username/:firstName/:lastName', (req, res) => {
+    const { username, firstName, lastName } = req.params
+    User.findOrCreate({ where: { username }, defaults: { userName: username, firstName, lastName } })
+    .then(([user, created]) => {
+        if (created) {
+            console.log(user)
+            res.send(user)
+        } else {
+            res.send("Already exists")
+            console.log("already exists")
+        }
+    })
+})
+
+app.listen(8280, () => {
+    console.log("Running on port 8080")
+})
+```
 
 **[Let's move on to the next Module!](../02-advanced_virtual_machines)**
