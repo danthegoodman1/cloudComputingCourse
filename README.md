@@ -31,7 +31,8 @@ P1. [Project 1: VM orchestration](/p1-orchestration)
 10. [Pub/Sub & MQTT - Cloud Messaging](/10-pubsub)
 11. [Cloud Storage - Objects in the Cloud](/11-cloud_storage)
 P2. [Project 2: TBD](/p2-)
-12. [DialogFlow - Build your own assitant](/12-dialogflow) -->
+12. [2FA - Securing the Cloud]
+13. [DialogFlow - Build your own assitant](/12-dialogflow) -->
 
 ## Contributors
 
