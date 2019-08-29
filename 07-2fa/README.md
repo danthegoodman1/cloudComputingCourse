@@ -122,27 +122,29 @@ app.listen(8080, () => {
 
 I'll let you build the html part, but here is the `POST` request that goes with the backend:
 
-```html
-<script>
-    fetch("/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            username,
-            password,
-            twofa
-        })
+```js
+fetch("/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        username,
+        password,
+        twofa
     })
-    .then((response) => {
-        return response.text()
-    })
-    .then((response) => {
-        document.write(response)
-    })
-    .catch((err) => {
-        console.error(err)
-    })
-</script>
+})
+.then((response) => {
+    return response.text()
+})
+.then((response) => {
+    document.write(response)
+})
+.catch((err) => {
+    console.error(err)
+})
 ```
+
+Once you write the rest of the HTML, you should be able to "login" with your 2FA code and get the "secret endpoint info".
+
+**[Now let's move on to the next lesson]()**
