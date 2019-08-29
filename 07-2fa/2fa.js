@@ -1,6 +1,6 @@
 const speakeasy = require('speakeasy')
-const qrcodeTerminal = require('qrcode-terminal')
 const fs = require('fs')
+const qrcodeTerminal = require('qrcode-terminal')
 
 
 // Parse args

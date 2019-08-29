@@ -1,0 +1,36 @@
+<html>
+    <body>
+        <h1>Login:</h1>
+        <input type="text" id="usr" placeholder="username" />
+        <input type="text" id="psw" placeholder="password" />
+        <input type="text" id="tfa" placeholder="2fa code" />
+        <button id="send">Login</button>
+        <script>
+            document.getElementById("send").onclick = () => {
+                const username = document.getElementById("usr").value
+                const password = document.getElementById("psw").value
+                const twofa = document.getElementById("tfa").value
+                fetch("/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        twofa
+                    })
+                })
+                .then((response) => {
+                    return response.text()
+                })
+                .then((response) => {
+                    document.write(response)
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+            }
+        </script>
+    </body>
+</html>

@@ -4,6 +4,7 @@
 
 - [Why 2FA?](#why-2fa)
 - [Build your first 2FA app](#build-your-first-2fa-app)
+- [Protect Something with it](#protect-something-with-it)
 
 ## Why 2FA?
 
@@ -56,4 +57,14 @@ readline.question(`Please enter your 2fa code: `, (code) => {
 })
 ```
 
-Now run this, provide it with your 2FA code from your authenticator app, and kachow: you got yourself some 2FA baby.
+Now run this, provide it with your 2FA code from your authenticator app. Now you have yourself some 2FA baby.
+
+## Protect Something with it
+
+Now we actually are going to use 2FA to protect something. Let's protect an endpoint that contains some information. We will access this endpoint through a simple HTML web page. So first we need to build some endpoints in our web app. First let's make thew `/` endpoint that will load the initial web page:
+
+```js
+app.get("/", (req, res) => {
+    
+})
+```

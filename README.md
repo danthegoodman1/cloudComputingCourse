@@ -25,14 +25,14 @@ Made with ❤️ by Dan The Goodman
 5.  [App Engine and Delegated Tasks](/05-app_engine)
 6.  [Docker Intro](/06-docker_intro)
 P1. [Project 1: VM orchestration](/p1-orchestration)
-<!-- 7.  [Cloud Run and Stateless Containers](/07-cloud_run)
-8.  [Google Kubernetes Engine](/08-gke)
-9.  [RancherOS - Building your own Kubernetes Cluster](/09-rancher)
-10. [Pub/Sub & MQTT - Cloud Messaging](/10-pubsub)
-11. [Cloud Storage - Objects in the Cloud](/11-cloud_storage)
+7.  [2FA - Securing the Cloud](/07-2fa)
+<!-- 8.  [Cloud Run and Stateless Containers](/08-cloud_run)
+9.  [Google Kubernetes Engine](/09-gke)
+10.  [RancherOS - Building your own Kubernetes Cluster](/10-rancher)
+11. [Pub/Sub & MQTT - Cloud Messaging](/11-pubsub)
+12. [Cloud Storage - Objects in the Cloud](/12-cloud_storage)
 P2. [Project 2: TBD](/p2-)
-12. [2FA - Securing the Cloud]
-13. [DialogFlow - Build your own assitant](/12-dialogflow) -->
+13.  [DialogFlow - Build your own assitant](/13-dialogflow) -->
 
 ## Contributors
 
