@@ -35,7 +35,7 @@ if (process.argv.includes('gen')) {
     })
 } else {
     console.log(`Usage:
-node index.js [command]
+node 2fa.js [command]
 ------------------------
 commands:
 
