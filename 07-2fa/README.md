@@ -63,10 +63,12 @@ Now run this, provide it with your 2FA code from your authenticator app. Now you
 
 Now we actually are going to use 2FA to protect something. Let's protect an endpoint that contains some information. We will access this endpoint through a simple HTML web page.
 
-First we need a new dependency to parse JSON from the front end:
+First we need new dependencies to accept connections and parse JSON from the front end:
+
+`npm i -s body-parser express`
 
 ```js
-const app = require("express")()
+const app = require("express")() // Shorthanded
 const speakeasy = require('speakeasy')
 const fs = require('fs')
 const bodyParser = require("body-parser")
