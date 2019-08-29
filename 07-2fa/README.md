@@ -77,7 +77,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 ```
 
-Now we need an endpoint that will send the inital webpage:
+Now we need an endpoint that will send the initial webpage:
+
 ```js
 app.get("/", (req, res) => { // Send the web page
     res.sendFile("./index.html", { root: __dirname })
