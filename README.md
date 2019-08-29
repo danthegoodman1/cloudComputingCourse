@@ -25,7 +25,7 @@ Made with ❤️ by Dan The Goodman
 5.  [App Engine and Delegated Tasks](/05-app_engine)
 6.  [Docker Intro](/06-docker_intro)
 
-P1. [Project 1: VM orchestration](/p1-orchestration)
+&nbsp;P1. [Project 1: VM orchestration](/p1-orchestration)
 
 7.  [2FA - Securing the Cloud](/07-2fa)
 <!-- 8.  [Cloud Run and Stateless Containers](/08-cloud_run)
