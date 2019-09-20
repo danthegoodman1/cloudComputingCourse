@@ -2,7 +2,9 @@
 
 How does Discord, the Gaming Communications platform that took the world by storm, scale so quickly and efficiently? How do they handle all of the traffic and data they have today?
 
-See: https://blog.discordapp.com/how-discord-handles-two-and-half-million-concurrent-voice-users-using-webrtc-ce01c3187429
+I would encourage you to go read their blog post: https://blog.discordapp.com/how-discord-handles-two-and-half-million-concurrent-voice-users-using-webrtc-ce01c3187429
+
+They also make really awesome blog posts about how they do almost everything at Discord, which is awesome since many giant companies aren't public about how they handle massive user counts and data.
 
 It may not seem like it, but companies/products like Discord could never exist if their infrastructure couldn't handle it. They scaled to millions of users in a few months. This is a perfect example of how it doesn't matter how great your service is if nobody can use it.
 
@@ -66,3 +68,5 @@ A gif/diagram from this section of the blog:
 To make sure their voice servers are performing, they have a certain usage set to trigger auto-scaling (probably CPU usage), as well as quick health checks to make sure the VM is alive and doing what it's supposed to (otherwise it's killed and a new one is spawned):
 
 *When a Discord Voice server dies, it fails the periodic ping and gets removed from the service discovery system. The client also notices server failure due to the severed voice WebSocket connection and requests a voice server ping through the gateway WebSocket connection. The Discord Guilds server confirms the failure, consults the service discovery system, and assigns a new Discord Voice server to the guild. Discord Guilds then pushes all the voice state objects to the new voice server. Every client is notified about the new voice server and creates a voice WebSocket connection to the new voice server to start media setup.*
+
+So they have a separate service for Voice, chat, and voice server assigning. This is a good example of why it is a good idea to chop up services so they can scale differently.
