@@ -1,4 +1,4 @@
-# Module 7: Security the Cloud:- 2FA <!-- omit in toc -->
+# Module 8: Security the Cloud:- 2FA <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -168,5 +168,3 @@ As you can see, the `otpath_url` is no more than the `base32` secret that we sav
 ```
 
 You could also create your own by just base32 encoding 32 random printable characters.
-
-**[Now let's move on to the next lesson]()**
