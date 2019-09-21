@@ -1,4 +1,4 @@
-# Module 8: Security the Cloud:- 2FA <!-- omit in toc -->
+# Module 10: Security the Cloud:- 2FA <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 

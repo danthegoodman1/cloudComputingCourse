@@ -26,7 +26,9 @@ Made with ❤️ by Dan The Goodman
 6.  [Docker Intro](/06-docker_intro)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C1. [Case Study 1: Discord](/c1-discord)
 7.  [RancherOS - Building your own Kubernetes Cluster](/07-rancher)
-8.  [2FA - Securing the Cloud](/08-2fa)
+<!-- 8.  [Indexing in Real Time](/08-indexing) -->
+9.  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C2. [Case Study 2: SaaS](/c2-saas)
+10. [2FA - Securing the Cloud](/10-2fa)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; P1. [Project 1: VM orchestration](/p1-orchestration)
 <!--
 1.  [Cloud Run and Stateless Containers](/08-cloud_run)
