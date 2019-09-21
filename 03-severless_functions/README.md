@@ -7,6 +7,7 @@
 - [Getting Started: Firebase](#getting-started-firebase)
 - [Writing Your First Serverless Function](#writing-your-first-serverless-function)
 - [A More Advanced Serverless Function](#a-more-advanced-serverless-function)
+- [Cold Starts](#cold-starts)
 
 ## What is Serverless?
 
@@ -89,4 +90,6 @@ Firestore is a NoSQL style database that I think is the best in existence, since
 
 Now you can begin to see the power of Serverless Function. My most frequent use of them is to do DB caching for Firestore, so that I can fetch information about total collections/documents without making unnecessary reads/writes. Think about the power of reactive functions, these can respond to pretty much any Google Cloud Platform service action. However, there is a slight difference between Google Cloud Functions and Firebase Functions. Firebase Functions have much better integration with stuff like Firestore, while Google Cloud Functions generally have better integration with the other Google Cloud Products. For example, if you need to respond to Google Cloud Storage, use Google Cloud Functions, since Firebase has it's own version of Cloud Storage that Firebase Functions is the better fit for. Really just google and see which one you need to integrate best with the trigger you need, they are written pretty much identically. 
 
-**[Great work, let's move on to the next Module](../04-firestore)**
+## Cold Starts
+
+After a few minutes, a function will go idle. This means that there is a 7-8 second delay between when a request or event triggers a function, and it actually executing. Think how you might be able to get around this (at least in the HTTPS case).
