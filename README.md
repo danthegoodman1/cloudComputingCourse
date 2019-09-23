@@ -23,20 +23,20 @@ Made with ❤️ by Dan The Goodman
 3.  [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
 4.  [Firestore and NoSQL Data Modeling](/04-firestore)
 5.  [App Engine and Delegated Tasks](/05-app_engine)
-6.  [Docker Intro](/06-docker_intro)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C1. [Case Study 1: Discord](/c1-discord)
+6.  [Docker Intro](/06-docker_intro)
 7.  [RancherOS - Building your own Kubernetes Cluster](/07-rancher)
 <!-- 8.  [Indexing in Real Time](/08-indexing) -->
 9.  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C2. [Case Study 2: SaaS](/c2-saas)
 10. [2FA - Securing the Cloud](/10-2fa)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; P1. [Project 1: VM orchestration](/p1-orchestration)
-<!--
-1.  [Cloud Run and Stateless Containers](/08-cloud_run)
-2.  [Google Kubernetes Engine](/09-gke)
-3.  [Pub/Sub & MQTT - Cloud Messaging](/11-pubsub)
-4.  [Cloud Storage - Objects in the Cloud](/12-cloud_storage)
-P2. [Project 2: TBD](/p2-)
-13.  [DialogFlow - Build your own assitant](/13-dialogflow) -->
+
+<!-- 1.  [Cloud Run and Stateless Containers](/08-cloud_run) -->
+<!-- 2.  [Google Kubernetes Engine](/09-gke) -->
+<!-- 3.  [Pub/Sub & MQTT - Cloud Messaging](/11-pubsub) -->
+<!-- 4.  [Cloud Storage - Objects in the Cloud](/12-cloud_storage) -->
+<!-- P2. [Project 2: TBD](/p2-) -->
+<!-- 13.  [DialogFlow - Build your own assitant](/13-dialogflow) -->
 
 ## Contributors
 
