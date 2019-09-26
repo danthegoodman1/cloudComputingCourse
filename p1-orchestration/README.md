@@ -28,7 +28,9 @@ If you are using DO then the `do-wrapper` npm package is your friend
 - An API that can Create, Destroy, and List current in-use VMs
 - VMs are launched with some sort of persistent connection service/app that others can use
 - Demo-able in class
-- Use GCP or DO (%5 bonus for using GCP since it's more production-grade and a little more involved in the initial setup)
+- Use GCP or DO (%2 bonus for using GCP since it's more production-grade and a little more involved in the initial setup)
+- 2FA required to access the service/app
+- Python or NodeJS (Hint: use NodeJS)
 
 ## Grading
 
@@ -38,7 +40,8 @@ If you are using DO then the `do-wrapper` npm package is your friend
 - API can show current VMs: **10 points**
 - VMs run some sort of persistent service/app: **20 points**
 - Bug-free demo: **10 points**
-- Creativity/Difficulty of project: **20 points**
+- Creativity/Difficulty of project: **10 points**
+- 2FA authentication working **10 points**
 
 **Extra Credit:**
 - Use GCP entirely: **2 points**
