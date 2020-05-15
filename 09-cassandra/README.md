@@ -1,5 +1,11 @@
 # Module 9: An Introduction to Cassand (and Scylla) <!-- omit in toc -->
 
+**Note:** This tutorial does not cover setting up authentication to the DB. We assume this is on some VPC that already has protection layers setup, and the DB is interfaced indirectly through an API. In a production setup, clustering keys and basic user/passwords should be setup to secure the nodes and cluster.
+
+For Speed of learning authentication is ignored so we can rapidly setup the node and cluster.
+
+*See [https://www.linode.com/docs/databases/cassandra/deploy-scalable-cassandra/#enable-security-features](https://www.linode.com/docs/databases/cassandra/deploy-scalable-cassandra/#enable-security-features) for more on clustering and authentication*
+
 ## Table of Contents <!-- omit in toc -->
 - [What is Cassandra?](#what-is-cassandra)
 - [Cassandra vs. Scylla?](#cassandra-vs-scylla)
@@ -156,7 +162,7 @@ CREATE TABLE extable (
 ) WITH comment='this is a comment'
 ```
 
-*NOTE: There are many ways ot set PRIMARY KEYs, see [https://cassandra.apache.org/doc/3.11.6/cql/ddl.html#create-table](https://cassandra.apache.org/doc/3.11.6/cql/ddl.html#create-table)*
+*Note: There are many ways ot set PRIMARY KEYs, see [https://cassandra.apache.org/doc/3.11.6/cql/ddl.html#create-table](https://cassandra.apache.org/doc/3.11.6/cql/ddl.html#create-table)*
 
 #### Setup the Client Library (NodeJS)
 
