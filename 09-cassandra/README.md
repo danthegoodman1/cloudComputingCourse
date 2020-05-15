@@ -9,7 +9,7 @@
     - [Configuring the Node for Internet Access](#configuring-the-node-for-internet-access)
     - [Test Cassandra](#test-cassandra)
     - [Node to Node Encryption](#node-to-node-encryption)
-- [Getting Started in the DB](#getting-started-in-the-db)
+- [Using the DB](#using-the-db)
     - [Create a Keyspace](#create-a-keyspace)
     - [Create a Table](#create-a-table)
     - [Setup the Client Library (NodeJS)](#setup-the-client-library-nodejs)
@@ -127,7 +127,7 @@ And check the node with:
 
 See [https://www.linode.com/docs/databases/cassandra/set-up-a-cassandra-node-cluster-on-ubuntu-and-centos/#enable-node-to-node-encryption](https://www.linode.com/docs/databases/cassandra/set-up-a-cassandra-node-cluster-on-ubuntu-and-centos/#enable-node-to-node-encryption) for how to do this. If you are using a VPC properly everything should be encrypted natively across the network anyway (and nobody else can get on the network).
 
-## Getting Started in the DB
+## Using the DB
 
 While still SSH'd into the node, run:
 `cqlsh`
