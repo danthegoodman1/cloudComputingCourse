@@ -62,11 +62,16 @@ Update repos:
 Install Cassandra:
 `sudo apt-get install cassandra`
 
+*Cassandra will have started by default:*
+
+`systemctl stop cassandra`
+
+`rm -rf /var/lib/cassandra/*`
+
 **STOP HERE IF ADDING NEW NODES**
 
 Enable and Start Cassandra:
 `systemctl enable cassandra`
-`systemctl start cassandra`
 
 #### Configuring the Node for Internet Access
 
@@ -83,40 +88,30 @@ cluster_name: 'Something you choose'
 
 start_rpc: true
 
-rpc_address: 0.0.0.0
+rpc_address: x.x.x.x
 
 listen_address: x.x.x.x
 
-broadcast_rpc_address: x.x.x.x
-
-endpoint_snitch: "GossipingPropertyFileSnitch"
+endpoint_snitch: GossipingPropertyFileSnitch
 
 seed_provider:
   - class_name: org.apache.cassandra.locator.SimpleSeedProvider
     - seeds: "x.x.x.x"
 
 auto_bootstrap: false
-
-num_tokens: 256
 ```
 
 Where x.x.x.x is the interface you want to listen on.
 
-*The rpc_address should be changed to x.x.x.x as well for an internal configuration.*
-
 'rpc' addresses are for client communication, and other 'listening' addresses are for node-to-node communication.
-
-Next, we need to edit the `/etc/cassandra/conf/cassandra-rackdc.properties` file to configure the data center and rack:
-
-```
-dc=DC1
-rack=RACK1
-```
 
 We also need to allow certain ports on the firewall:
 
 Allow client connection (API):
 `ufw allow 9042`
+
+Allow rpc connections:
+`ufw allow 9160`
 
 Allow cluster node connections:
 `ufw allow 7000`

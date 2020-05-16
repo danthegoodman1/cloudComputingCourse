@@ -41,8 +41,12 @@ Install Cassandra:
 
 **DO NOT START THE CLUSTER**
 
-If the cluster did start, stop it with:
+Stop it with:
 `systemctl stop cassandra`
+
+Clear data:
+
+`rm -rf /var/lib/cassandra/*`
 
 And delete the data it may have created:
 
@@ -50,14 +54,9 @@ And delete the data it may have created:
 
 ## Configure the new Node
 
-For the sake of this tutorial, we will assume this is in a new data center on a new rack.
+Since we are working with virtual machines, the data center and rack configurations aren't super useful since we don't know where physical machines are in relation to each other. Changing these also causes lots of problems, but they can be changed in the file:
 
-First, open the `/etc/cassandra/conf/cassandra-rackdc.properties` file and set to the following:
-
-```
-dc=DC2
-rack=RACK1
-```
+`/etc/cassandra/cassandra-rackdc.properties`
 
 *Note: Racks are specific to a data center, so racks in different data centers can share names without collisions*
 
@@ -67,21 +66,18 @@ Now open `/etc/cassandra/cassandra.yaml` and set the following:
 cluster_name: '[Your Cluster Name]'
 listen_address: [public_ip_address]
 rpc_address: [public_ip_address]
-num_tokens: 256
 seed_provider:
   - class_name: org.apache.cassandra.locator.SimpleSeedProvider
-    - seeds: [original_node_ip]
+    - seeds: "[original_node_ip]"
 endpoint_snitch: GossipingPropertyFileSnitch
-auto_bootstrap: true
+auto_bootstrap: false
 allocate_tokens_for_local_replication_factor: 3
 ```
 There are a few things to note here:
 
-First, we have `auto_bootstrap` set to `true`. We will need to set this to false later, but this tells it to fetch the info and data from the seed nodes.
+Next, we didn't set this machine as a seed node *yet*. Seed nodes are basically nodes that other nodes look to get their initial data from when the first start. You should only have a few nodes per data center set as a seed node, and never set the machine as a seed node on start. This could be set as a seed node at start if you were creating a new cluster with multiple nodes at the same time.
 
-Next, we didn't set this machine as a seed node *yet*. Seed nodes are basically nodes that other nodes look to get their initial data from when the first start. You should only have a few nodes per data center set as a seed node, and never set the machine as a seed node on start.
-
-Now we also have the `allocate_tokens_for_local_replication_factor`. This is based on the most intensive keyspaces in our cluster. If it is the first node we are adding, multiple nodes in a data center or rack we should stagger down this value. ex: The first node we add would be `3`, then if our next most intensive keyspace was only `2`, the second node value would be `2`. This isn't required but it will increase performance of the cluster since it tells the cluster how to balance the keyspaces within the local cluster.
+This only needs to be set if we already have data in the cluster. Now we also have the `allocate_tokens_for_local_replication_factor`. This is based on the most intensive keyspaces in our cluster. If it is the first node we are adding, multiple nodes in a data center or rack we should stagger down this value. ex: The first node we add would be `3`, then if our next most intensive keyspace was only `2`, the second node value would be `2`. This isn't required but it will increase performance of the cluster since it tells the cluster how to balance the keyspaces within the local cluster.
 
 ## Run the new Node (and Reconfigure)
 
@@ -98,7 +94,7 @@ Now we need to reconfigure the node since this is the first one in the data cent
 ```
 seed_provider:
   - class_name: org.apache.cassandra.locator.SimpleSeedProvider
-    - seeds: [original_node_ip], [new_ip]
+    - seeds: "[original_node_ip], [new_ip]"
 auto_bootstrap: false
 ```
 
