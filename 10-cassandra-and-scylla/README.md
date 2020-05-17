@@ -1,4 +1,4 @@
-# Module 9: An Introduction to Cassand (and Scylla) <!-- omit in toc -->
+# Module 10: An Introduction to Cassand (and Scylla) <!-- omit in toc -->
 
 **Note:** This tutorial does not cover setting up authentication to the DB. We assume this is on some VPC that already has protection layers setup, and the DB is interfaced indirectly through an API. In a production setup, clustering keys and basic user/passwords should be setup to secure the nodes and cluster.
 
