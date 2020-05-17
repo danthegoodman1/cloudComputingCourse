@@ -11,9 +11,9 @@ For Speed of learning authentication is ignored so we can rapidly setup the node
 - [Cassandra vs. Scylla?](#cassandra-vs-scylla)
 - [Cassandra Concepts](#cassandra-concepts)
 - [Creating your first node](#creating-your-first-node)
-    - [Installing Cassandra](#installing-cassandra)
+    - [Installing Scylla](#installing-scylla)
     - [Configuring the Node for Internet Access](#configuring-the-node-for-internet-access)
-    - [Test Cassandra](#test-cassandra)
+    - [Finish Setup](#finish-setup)
     - [Node to Node Encryption](#node-to-node-encryption)
 - [Using the DB](#using-the-db)
     - [Create a Keyspace](#create-a-keyspace)
@@ -38,40 +38,37 @@ For the most part they are setup and operate the same. Companies like Comcast an
 
 You have 3 structures to think about in a Cassandra cluster:
 
-1. **Node** - A Single VM or machine running Cassandra (you also have seed nodes, which we will get to later in clustering).
-2. **Rack** - Cassandra is aware of racks, meaning it understands that in power failure events a whole rack can be taken out, but maybe not the whole data center. It uses this to shard data safely and efficiently.
-3. **Data Center** - Physical locations where VMs or machines are located, Cassandra understands this to effectively and safely shard data (similar to racks).
+1. **Node** - A Single VM or machine running Cassandra/Scylla (you also have seed nodes, which we will get to later in clustering).
+2. **Rack** - Cassandra/Scylla is aware of racks, meaning it understands that in power failure events a whole rack can be taken out, but maybe not the whole data center. It uses this to shard data safely and efficiently.
+3. **Data Center** - Physical locations where VMs or machines are located, Cassandra/Scylla understands this to effectively and safely shard data (similar to racks).
 
 ## Creating your first node
 
-#### Installing Cassandra
+#### Installing Scylla
 
 We'll be installing on Ubuntu 18.04 nodes.
 
-*Check out [https://cassandra.apache.org/download/](https://cassandra.apache.org/download/) for the most updated instructions.*
+*Check out [https://www.scylladb.com/download/](https://www.scylladb.com/download/) for the most updated instructions.*
 
-Add Cassandra to apt repo:
-`echo "deb https://downloads.apache.org/cassandra/debian 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list`
+Add Scylla to apt repo:
+`sudo curl -o /etc/apt/sources.list.d/scylla.list -L http://repositories.scylladb.com/scylla/repo/8fd0c4f7-ce41-408c-a5fe-1660fb504c6b/ubuntu/scylladb-4.0-bionic.list`
 
 Add Cassandra repo keys:
-`curl https://downloads.apache.org/cassandra/KEYS | sudo apt-key add -`
+`sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5e08fbd8b5d6ec9c`
 
 Update repos:
 `sudo apt-get update`
 
 Install Cassandra:
-`sudo apt-get install cassandra`
+`sudo apt-get install scylla`
 
-*Cassandra will have started by default:*
-
-`systemctl stop cassandra`
-
-`rm -rf /var/lib/cassandra/*`
-
-**STOP HERE IF ADDING NEW NODES**
-
-Enable and Start Cassandra:
-`systemctl enable cassandra`
+Set Java Release:
+```
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install -y openjdk-8-jre-headless
+sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
+```
 
 #### Configuring the Node for Internet Access
 
@@ -86,8 +83,6 @@ Find the following lines and set them in your config file (or create if they don
 ```
 cluster_name: 'Something you choose'
 
-start_rpc: true
-
 rpc_address: x.x.x.x
 
 listen_address: x.x.x.x
@@ -97,15 +92,24 @@ endpoint_snitch: GossipingPropertyFileSnitch
 seed_provider:
   - class_name: org.apache.cassandra.locator.SimpleSeedProvider
     - seeds: "x.x.x.x"
-
-auto_bootstrap: false
 ```
+*Where x.x.x.x is the interface you want to listen on.*
 
-Where x.x.x.x is the interface you want to listen on.
+Let's also setup some clustering info, open `/etc/scylla/cassandra-rackdc.properties`:
+
+```
+dc=DATC1
+rc=RACK1
+prefer_local=true
+```
+We'll use this config in the next module.
 
 'rpc' addresses are for client communication, and other 'listening' addresses are for node-to-node communication.
 
 We also need to allow certain ports on the firewall:
+*see: [https://docs.scylladb.com/operating-scylla/admin/#networking](https://docs.scylladb.com/operating-scylla/admin/#networking)*
+
+*These will already be open on DO Droplets*
 
 Allow client connection (API):
 `ufw allow 9042`
@@ -116,10 +120,20 @@ Allow rpc connections:
 Allow cluster node connections:
 `ufw allow 7000`
 
-#### Test Cassandra
+#### Finish Setup
 
-To refresh the configuration, run:
-`systemctl restart cassandra`
+To finish setting up scylla, run:
+`scylla_setup`
+and follow the prompts to your configuration. They should mostly be no except for the dependencies one.
+
+Then, configure the IO:
+`scylla_io_setup`
+
+This will give us a handy indication how well our nodes perform. The cluster performance will be about the sum of these nodes' performance.
+*Although I've seen 2 of the exact same nodes with one having half the performance for some reason*
+
+Now, we can start the node:
+`systemctl start scylla-server`
 
 And check the node with:
 `nodetool status`
@@ -131,7 +145,8 @@ See [https://www.linode.com/docs/databases/cassandra/set-up-a-cassandra-node-clu
 ## Using the DB
 
 While still SSH'd into the node, run:
-`cqlsh`
+`cqlsh x.x.x.x`
+*Where x.x.x.x is the address you used before*
 
 This will drop us into the CQL shell.
 
@@ -173,7 +188,7 @@ const cassandra = require('cassandra-driver')
 const client = new cassandra.Client({
   contactPoints: ['x.x.x.x'],
   localDataCenter: 'DC1',
-  keyspace: 'exspace'
+  keyspace: 'exspace' // This can only be set once you've created your keyspace
 })
 
 exports.cassandra = cassandra
@@ -289,4 +304,4 @@ client.execute(query, ['example name'])
   })
 ```
 
-**Check the next module for how to start clustering Cassandra**
+**Check the next module for how to start clustering Scylla**
