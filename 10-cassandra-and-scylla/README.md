@@ -1,4 +1,4 @@
-# Module 10: An Introduction to Cassand (and Scylla) <!-- omit in toc -->
+# Module 10: An Introduction to Cassandra (and Scylla) <!-- omit in toc -->
 
 **Note:** This tutorial does not cover setting up authentication to the DB. We assume this is on some VPC that already has protection layers setup, and the DB is interfaced indirectly through an API. In a production setup, clustering keys and basic user/passwords should be setup to secure the nodes and cluster.
 
@@ -36,7 +36,7 @@ For the most part they are setup and operate the same. Companies like Comcast an
 
 ## Cassandra Concepts
 
-You have 3 structures to think about in a Cassandra cluster:
+You have 3 structures to think about in a Cassandra/Scylla cluster:
 
 1. **Node** - A Single VM or machine running Cassandra/Scylla (you also have seed nodes, which we will get to later in clustering).
 2. **Rack** - Cassandra/Scylla is aware of racks, meaning it understands that in power failure events a whole rack can be taken out, but maybe not the whole data center. It uses this to shard data safely and efficiently.

@@ -17,7 +17,7 @@ For Speed of learning authentication is ignored so we can rapidly setup the node
 ## More on Clustering
 Like said previously, clustering is linear and horizontally scalable with no single point of failure.
 
-You have 3 structures to think about in a Cassandra cluster:
+You have 3 structures to think about in a Cassandra/Scylla cluster:
 
 1. **Node** - A Single VM or machine running Cassandra/Scylla (you also have seed nodes, which we will get to later in clustering).
 2. **Rack** - Cassandra/Scylla is aware of racks, meaning it understands that in power failure events a whole rack can be taken out, but maybe not the whole data center. It uses this to shard data safely and efficiently.
