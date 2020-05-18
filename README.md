@@ -15,7 +15,7 @@ Feel free to make a pull request! I'd love to add topics that I haven't yet cove
 
 Made with ❤️ by Dan The Goodman
 
-## What you will learn
+## What You Will learn
 
 I'm going to try to teach you everything you need to launch a tech startup, work for a giant company, or build a side project. This will include:
 
@@ -32,6 +32,17 @@ We'll also do some fun projects:
 - **Build a custom VM cluster and autoscaler**
 - **Build a serverless websocket chat app**
 - **Build a simple Virtual Assistant like Google Home, Siri, and Amazon Echo (Alexa)**
+
+## What Is Expected
+
+- Some JS/Node.js, HTML, and Python
+- Basic concepts like web requests
+- Basics of Objects and Classes
+- Basic Linux and terminal usage
+  - SCP, SSH *(Try the VS Code SSH extension, best thing ever)*
+  - How to move and execute code in a terminal *(play buttons are for noobs)*
+
+Write your own code. While you will be googling and copying a lot of code in the future, just write it yourself. You don't learn anything from copy pasta 🍝.
 
 ## Modules
 
@@ -58,10 +69,11 @@ We'll also do some fun projects:
 
 12.   [2FA - Securing the Cloud](/10-2fa)
 
-<!-- 13. Secure Development Life Cycle -->
+<!-- 13. Secure Development Life Cycle (include dev keys vs. prod keys, secure token/api key handling) -->
 
 <!-- 11. Infrastructure as Code - APIs and Terraform? -->
 <!-- 1.  [Cloud Run and Stateless Containers](/08-cloud_run) -->
+<!-- Google cloud datastore and dynamoDB -->
 <!-- 2.  [Google Kubernetes Engine](/09-gke) -->
 <!-- 3.  [Pub/Sub & MQTT - Cloud Messaging](/11-pubsub) -->
 <!-- 4.  [Cloud Storage - Objects in the Cloud](/12-cloud_storage) -->
