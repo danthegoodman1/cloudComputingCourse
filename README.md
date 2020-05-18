@@ -20,12 +20,18 @@ Made with ❤️ by Dan The Goodman
 I'm going to try to teach you everything you need to launch a tech startup, work for a giant company, or build a side project. This will include:
 
 - **Databases** like Cassandra/Scylla clusters, Firestore, Datastore, and SQLite
-- **Server-client communication** with HTTP/S and secure Websockets to build powerful APIs
+- **Server-client communication** with HTTP/S, Pub/Sub, and secure Websockets to build powerful APIs
 - **Distributed Computing** through manually clustering Virtual Machines, Serverless Functions, Docker, Kubernetes, Rancher, Google Cloud Run, Google App Engine, and event triggered workers
 - **Supportive technologies** like Full-text search indexing with Apache Solr, Algolia, and custom built solutions, as well as interfacing with third party APIs
 - **Security** in Multi-factor Authentication, Secure password handling, OAuth2, RBAC, and Security keys
 - **Secure Development Life Cycle** with CI/CD, secure database/resource access, and secure key/token handling
 - **Front End** with a sprinkle of HTML, JS, CSS, and React throughout the modules
+
+We'll also do some fun projects:
+
+- **Build a custom VM cluster and autoscaler**
+- **Build a serverless websocket chat app**
+- **Build a simple Virtual Assistant like Google Home, Siri, and Amazon Echo (Alexa)**
 
 ## Modules
 
@@ -52,6 +58,8 @@ I'm going to try to teach you everything you need to launch a tech startup, work
 
 12.   [2FA - Securing the Cloud](/10-2fa)
 
+<!-- 13. Secure Development Life Cycle -->
+
 <!-- 11. Infrastructure as Code - APIs and Terraform? -->
 <!-- 1.  [Cloud Run and Stateless Containers](/08-cloud_run) -->
 <!-- 2.  [Google Kubernetes Engine](/09-gke) -->
@@ -59,9 +67,14 @@ I'm going to try to teach you everything you need to launch a tech startup, work
 <!-- 4.  [Cloud Storage - Objects in the Cloud](/12-cloud_storage) -->
 <!-- P2. [Project 2: TBD](/p2-) -->
 <!-- 13.  [DialogFlow - Build your own assitant](/13-dialogflow) -->
+<!-- P3. Build a simple digital assistant -->
 
 ## Contributors
 
-[How do I contribute?](/how-to-contribute)
-
 [Dan The Goodman](https://github.com/danthegoodman1)
+
+## How Do I Contribute?
+
+Make a pull request!
+
+Make sure the `README.md` file is in a similar format to the ones you see in the first 0-12 modules
