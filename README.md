@@ -44,6 +44,10 @@ We'll also do some fun projects:
 
 Write your own code. While you will be googling and copying a lot of code in the future, just write it yourself. You don't learn anything from copy pasta 🍝.
 
+**You want to learn.**
+I hope that if you are here, it's because you want to understand cloud computing, and implement it in the future. I would argue cloud computing is just as (if not more) important as coding itself or any other technical skill in the world of development: _**If you can't deliver your code to anyone and everyone who wants to use it, your code is basically useless.**_
+*But I'm probably a little biased.*
+
 ## Modules
 
 0. [Setup and Requirements](/00-setup_and_requirements)
