@@ -8,7 +8,7 @@
 
 MongoDB is the closest Cloud Provider abstracted DB to Firestore and Datastore. It has an awesome, easy to use API, that is JS-like syntax in the command line. They also have their own hosting, *MongoDB Atlas* where they host the MongoDB cluster for you. They have a free tier of that, so we'll be using it for this module.
 
-Mongo has many features like event listeners (just like listening for changes in Firestore), schemaless design, powerful querying, and full-text search indexing built in.
+Mongo has many features like event listeners (just like listening for changes in Firestore), schemaless design, powerful querying, and full-text search indexing built in (in the case of mongodb atlas).
 
 Visit [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) and get setup, no credit card required (a nice change).
 
