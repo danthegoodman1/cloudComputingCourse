@@ -64,8 +64,8 @@ I hope that if you are here, it's because you want to understand cloud computing
 
 6. [Docker Intro](/06-docker_intro)
 7. [RancherOS - Building your own Kubernetes Cluster](/07-rancher)
-<!-- 8. Intro to Full-text search indexing -->
-<!-- 9. Apache Solr -->
+8. [Intro to Full-text Search Indexing](/08-indexing)
+9. [Apache Solr](09-apache-solr-indexing)
 10. [Cassandra/Scylla](/10-cassandra-and-scylla)
 11. [Cassandra/Scylla Clustering](/11-scylla-clustering)
 
