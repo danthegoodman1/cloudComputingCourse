@@ -11,6 +11,8 @@
 
 This will be one of the largest, if not the largest project in this course. In class I am going to give you 5 weeks to do this project from announcing it.
 
+If you have any questions please feel free to email me.
+
 ## Summary
 
 You are going to be building a web app, API, SaaS solution, what ever using the technologies we've learned so far. To make sure this project is done in timely manner, we will be doing it in phases every week. You can form teams of 3 or less (if there is an uneven number 4 is ok for one group).
@@ -24,10 +26,10 @@ This project is going to be entirely self hosted. That means everything is runni
 **Your project must have:**
 
 - **A VPC/VLAN/VPN** that protects the internal services (DB, Indexing, etc.) from being directly accessed, and your API can reach into. This can be the cloud provider's built in one
+- **An API** that powers your SaaS, or your Web Interface, or both
 - **An HTTPS Load Balancer** for your API/Web App. This can also be the cloud provider's offering, but I'll give 10% extra credit if you use NGINX, HAProxy, or something else on a VM. *This should handle SSL termination*
 - **A Clustered Database** implemented with some level of authentication between nodes, this can be Cassandra, Scylla, MongoDB, etc.
 - **A Search Feature** Using Solr or an Elasticsearch cluster
-- **An API** that powers your SaaS, or your Web Interface, or both
 
 ## Why Self Hosted Only?
 
@@ -43,14 +45,16 @@ For the final submission, you will turn in the whole code base, and present your
 
 ## Stages
 
-You can always change anything past when its phase is due if you want to keep improving upon it.
+You can always change anything past when its phase is due if you want to keep improving upon it. Each phase will need an updated `README.md` file.
 
 **Phase 1: Create a Database Cluster and VPC**
 
-**Phase 2: Create a Clustered API**
+**Phase 2: Create a Clustered and Load Balanced API**
 That you can use to make CRUD operations
 
-**Phase 3: **
+**Phase 3: Create a Search Feature**
+
+**Phase 4: Final Submission**
 
 ## Grading
 
