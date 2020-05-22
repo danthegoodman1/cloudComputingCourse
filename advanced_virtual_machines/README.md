@@ -1,4 +1,4 @@
-# Module 2: Advanced Virtual Machines <!-- omit in toc -->
+# Advanced Virtual Machines <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 

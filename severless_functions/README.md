@@ -1,4 +1,4 @@
-# Module 3: Serverless Functions <!-- omit in toc -->
+# Serverless Functions <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 

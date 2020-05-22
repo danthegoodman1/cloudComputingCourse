@@ -50,28 +50,29 @@ I hope that if you are here, it's because you want to understand cloud computing
 
 ## Modules
 
-0. [Setup and Requirements](/00-setup_and_requirements)
-1. [Intro to Virtual Machines](/01-intro_to_virtual_machines)
-2. [Advanced Virtual Machines](/02-advanced_virtual_machines)
-3. [Welcome to the World of Serverless: Serverless Functions](/03-serverless_functions)
-4. [Firestore and NoSQL Data Modeling](/04-firestore)
+1. [Setup and Requirements](/setup_and_requirements)
+2. [Intro to Virtual Machines](/intro_to_virtual_machines)
+3. [Advanced Virtual Machines](/advanced_virtual_machines)
+4. [Welcome to the World of Serverless: Serverless Functions](/serverless_functions)
+5. [Firestore and NoSQL Data Modeling](/firestore)
 
-**P1. [Project 1: VM orchestration](/p1-orchestration)**
+**P1. [Project 1: VM orchestration](/orchestration)**
 
-5. [App Engine and Delegated Tasks](/05-app_engine)
+5. [App Engine and Delegated Tasks](/app_engine)
 
 **C1. [Case Study 1: Discord](/c1-discord)**
 
-6. [Docker Intro](/06-docker_intro)
-7. [RancherOS - Building your own Kubernetes Cluster](/07-rancher)
-8. [Intro to Full-text Search Indexing](/08-indexing)
-9. [Apache Solr](09-apache-solr-indexing)
-10. [Cassandra/Scylla](/10-cassandra-and-scylla)
-11. [Cassandra/Scylla Clustering](/11-scylla-clustering)
+6. [Docker Intro](/docker_intro)
+7. [RancherOS - Building your own Kubernetes Cluster](/rancher)
+8. [Intro to Full-text Search Indexing](/indexing)
+9. [Apache Solr](/apache-solr-indexing)
+10. [ElasticSearch](/elasticsearch)
+11. [Cassandra/Scylla](/cassandra-and-scylla)
+12. [Cassandra/Scylla Clustering](/scylla-clustering)
 
 **C2. [Case Study 2: SaaS](/c2-saas)**
 
-12.   [2FA - Securing the Cloud](/10-2fa)
+13.   [2FA - Securing the Cloud](/2fa)
 
 <!-- 13. Secure Development Life Cycle (include dev keys vs. prod keys, secure token/api key handling) -->
 

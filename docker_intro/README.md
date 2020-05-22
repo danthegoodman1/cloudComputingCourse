@@ -1,4 +1,4 @@
-# Module 6: An Intro to Docker <!-- omit in toc -->
+# An Intro to Docker <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 

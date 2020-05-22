@@ -1,4 +1,4 @@
-# Module 07: Building you own Kubernetes Cluster - Rancher(OS) <!-- omit in toc -->
+# Building you own Kubernetes Cluster - Rancher(OS) <!-- omit in toc -->
 
 - [Drop it right in](#drop-it-right-in)
 

@@ -1,4 +1,4 @@
-# Module 14: MongoDB <!-- omit in toc -->
+# MongoDB <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 - [Why Mongo](#why-mongo)

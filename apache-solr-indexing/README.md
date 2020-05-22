@@ -1,4 +1,4 @@
-# Module 09: Apache Solr <!-- omit in toc -->
+# Apache Solr <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 - [Why Solr?](#why-solr)

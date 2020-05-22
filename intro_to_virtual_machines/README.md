@@ -1,5 +1,5 @@
 
-# Module 1: Intro to Virtual Machines <!-- omit in toc -->
+# Intro to Virtual Machines <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 

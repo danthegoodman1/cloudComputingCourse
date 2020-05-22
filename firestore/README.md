@@ -1,4 +1,4 @@
-# Module 4: Firestore and NoSQL Data Modeling <!-- omit in toc -->
+# Firestore and NoSQL Data Modeling <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
