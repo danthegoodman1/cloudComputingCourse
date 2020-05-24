@@ -65,21 +65,23 @@ I hope that if you are here, it's because you want to understand cloud computing
 6. [Docker Intro](/docker_intro)
 7. [*RancherOS - Building your own Kubernetes Cluster](/rancher)
 8. [*Serverless Containers With Cloud Run](/cloud-run)
-9. [Intro to Full-text Search Indexing](/indexing)
-10. [Apache Solr](/apache-solr-indexing)
-11. [ElasticSearch](/elasticsearch)
-12. [Cassandra/Scylla](/cassandra-and-scylla)
-13. [Cassandra/Scylla Clustering](/scylla-clustering)
+9. [*Kubernetes](/kubernetes*)
+10. [*Intro to Full-text Search Indexing](/indexing)
+11. [Apache Solr](/apache-solr-indexing)
+12. [ElasticSearch](/elasticsearch)
+13. [Cassandra/Scylla](/cassandra-and-scylla)
+14. [Cassandra/Scylla Clustering](/scylla-clustering)
 
 **C2. [Case Study 2: SaaS](/c2-saas)**
 
-14. [Authentication and Logins](/authentication-with-jwt)
-15. [2FA - Securing the Cloud](/2fa)
+15. [Authentication and Logins](/authentication-with-jwt)
+16. [2FA - Securing the Cloud](/2fa)
+17. [*Pub/Sub & MQTT](/pubsub)
 
 **P1. [Project 2: Secure Scalable Service](/p2-secure-scalable-service)**
 
-16. [*MongoDB](/mongodb)
-17. [*The Secure Development Life Cycle and CI/CD](/secure-development-life-cycle)
+17. [*MongoDB](/mongodb)
+18. [*The Secure Development Life Cycle and CI/CD](/secure-development-life-cycle)
 
 <!-- 13. Secure Development Life Cycle (include dev keys vs. prod keys, secure token/api key handling) -->
 

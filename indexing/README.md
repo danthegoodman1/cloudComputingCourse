@@ -1,5 +1,7 @@
 # Indexing for Real time search <!-- omit in toc -->
 
+*DROP IN FROM INDEXING REPO**
+
 ## Table of Contents <!-- omit in toc -->
 - [Why?](#why)
 - [Logic with Other Services](#logic-with-other-services)

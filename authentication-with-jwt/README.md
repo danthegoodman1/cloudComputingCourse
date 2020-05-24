@@ -1,16 +1,16 @@
 # Authentication with JWT <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
-- [Summary](#summary)
+- [Overview](#overview)
 - [Handling Logins](#handling-logins)
     - [Password Storage](#password-storage)
     - [OAuth and Using Other Accounts](#oauth-and-using-other-accounts)
     - [Third Party Auth](#third-party-auth)
 - [Custom Auth](#custom-auth)
-- [Overview](#overview)
+- [Summary](#summary)
     - [Further Development](#further-development)
 
-## Summary
+## Overview
 
 Being able to securely login, and make the process of security simple is crucial to mass adoption of a product or platform. Have you ever been to a website where every time you reloaded or navigated you had to login again? How annoying is that?
 
@@ -232,7 +232,7 @@ We need to set a header like this in the request:
 
 If you were within the 3 minutes, then you will be authenticated. If the token was incorrect, it will say invalid. If the token was expired, we'll be asked to login again.
 
-## Overview
+## Summary
 
 In this module, we created a register route and stored user information securely with bcrypt. We then created a login route, that generated a JWT holding basic information about the user, that eventually expired. We then created a protected route, that checked the validity of a JWT before responding to the request.
 
