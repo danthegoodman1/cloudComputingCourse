@@ -1,4 +1,4 @@
-# Authentication and Logins <!-- omit in toc -->
+# Authentication with JWT <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 - [Summary](#summary)

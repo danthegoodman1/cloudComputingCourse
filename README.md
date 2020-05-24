@@ -72,7 +72,7 @@ I hope that if you are here, it's because you want to understand cloud computing
 
 **C2. [Case Study 2: SaaS](/c2-saas)**
 
-13. [Authentication and Logins](/authentication)
+13. [Authentication and Logins](/authentication-with-jwt)
 14. [2FA - Securing the Cloud](/2fa)
 
 <!-- 13. Secure Development Life Cycle (include dev keys vs. prod keys, secure token/api key handling) -->
