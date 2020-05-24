@@ -7,6 +7,8 @@
     - [OAuth and Using Other Accounts](#oauth-and-using-other-accounts)
     - [Third Party Auth](#third-party-auth)
 - [Custom Auth](#custom-auth)
+- [Overview](#overview)
+    - [Further Development](#further-development)
 
 ## Summary
 
@@ -51,10 +53,10 @@ We are going to be using NodeJS, and the `jsonwebtoken` and `bcrypt` libraries. 
 ```
 npm init -y
 
-npm i jsonwebtoken bcrypt express body-parser cors
+npm i jsonwebtoken bcrypt express body-parser cors sqlite3 sequelize
 ```
 
-This will get us setup to make a simple API with authentication. For the purposes of this module, we are just going to store the user documents inside of a variable in memory. This would normally be stored in a database.
+This will get us setup to make a simple API with authentication. For the purposes of this module, we are just going to store the user documents inside of am SQLite3 DB. This would normally be stored in a decentralized database.
 
 We need to make an `index.js` file to start dropping code into:
 
@@ -63,7 +65,63 @@ const express = require('express')
 const cors = require('cors')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const bodyParser = require('bodyParser')
+const bodyParser = require('body-parser')
+const sqlite3 = require('sqlite3')
+
+const Sequelize = require('sequelize')
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: 'sqlite',
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+  storage: './database.sqlite'
+})
+
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connection to SQLite3 has been established successfully.')
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err)
+  })
+
+// Define a DB model
+const User = sequelize.define('user', {
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: null
+  },
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  jsonwebtoken: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  }
+})
+
+User.sync()
+.then(() => {
+    return User.findAll()
+})
+.then(users => {
+    // users.destroy({force: true}) // If we need to delete the DB entries later
+    console.log(`\n\n${users.length} users in db\n\n`)
+})
+.catch((err) => {
+    if (err.name === 'SequelizeUniqueConstraintError') {
+        console.log('error')
+        // This is how we handle sequelize errors
+    }
+    console.error(err)
+})
 
 const app = express()
 app.use(cors()) // Allow CORS
@@ -82,3 +140,106 @@ app.listen(8080, () => {
 Run this file and cURL, navigate in the browser, or make a postman GET request to `http://localhost:8080` to see `Hello world!`. If you do, you can move on.
 
 *See this for more info on bcrypt hashing: [https://stackoverflow.com/questions/20394137/yii-cpasswordhelper-hashpassword-and-verifypassword/20399775#20399775](https://stackoverflow.com/questions/20394137/yii-cpasswordhelper-hashpassword-and-verifypassword/20399775#20399775)*
+
+Remember the intro to virtual machine module where we made simple accounts using Express and SQlite3? This is going to be similar, but with auth.
+
+Now we need to add a register route to make an account:
+
+```js
+app.post('/register', (req, res) => {
+  console.log('register request')
+  bcrypt.hash(req.body.password, 12, (err, hash) => { // Hash password
+    // Check if user exists or needs to be registered
+    User.findOrCreate({ where: {username: req.body.username }, defaults: {
+      username: req.body.username,
+      password: hash
+    }})
+    .then(([user, created]) => {
+      if (!created) {
+        res.send('User already exists!')
+      } else {
+        res.send('User created!')
+      }
+    })
+  })
+})
+```
+
+We also need to login and generate that jsonwebtoken:
+
+```js
+app.post('/login', (req, res) => {
+  console.log('login request')
+  bcrypt.hash(req.body.password, 12, (err, hash) => {
+    User.findOne({
+      where: {
+        username: req.body.username
+      }
+    })
+    .then((found) => {
+      // Hash the password
+      bcrypt.compare(req.body.password, found.password, (err, result) => {
+        if (result) {
+          // Create the JWT
+          found.jsonwebtoken = jwt.sign({
+            username: found.username,
+            id: found.id
+          }, 'secretkey', { // This secret key should be an env var
+            expiresIn: '3m'
+          })
+          console.log(found || "User not found!")
+          res.send(found || "User not found!")
+        } else {
+          res.send('invalid username/password combo')
+        }
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.send("User not found!")
+    })
+  })
+})
+```
+
+This will create a token that expires in 3 minutes.
+
+Now create this protected endpoint:
+
+```js
+app.get('/protected', (req, res) => {
+  const token = req.header('Authorization').split(' ')[1] // Authorization: Bearer token
+  jwt.verify(token, 'secretkey', (err, decoded) => {
+    if (err) {
+      if (err.name == 'TokenExpiredError') {
+        res.send('JWT expired (fetch a new one!)')
+      } else {
+        res.send('Invalid JWT')
+      }
+    } else {
+      console.log(decoded)
+      res.send('Authenticated!')
+    }
+  })
+})
+```
+
+We need to set a header like this in the request:
+
+```js
+"Authorization": `Bearer ${token}`
+```
+
+If you were within the 3 minutes, then you will be authenticated. If the token was incorrect, it will say invalid. If the token was expired, we'll be asked to login again.
+
+## Overview
+
+In this module, we created a register route and stored user information securely with bcrypt. We then created a login route, that generated a JWT holding basic information about the user, that eventually expired. We then created a protected route, that checked the validity of a JWT before responding to the request.
+
+By using JWTs instead of repeatedly sending username/password combos every time we make a request, we greatly increase security and simplicity of a service.
+
+#### Further Development
+
+We could continue securing the service by adding in multi-factor authentication like rolling codes. We could also implement a refresh token feature which allows a user with a previously valid token to create a new valid token like OAuth2. However, this comes with certain vulnerabilities that greatly increase the risk in having a token stolen. Forcing someone to log back in is more secure, and it ensures they don't forget their login info!
+
+*See: [https://www.npmjs.com/package/jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) for more on the `jsonwebtoken` library.*
