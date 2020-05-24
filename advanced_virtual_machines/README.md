@@ -118,5 +118,3 @@ Now keep refreshing, it should change as you get routed to the different workers
 **BOOM!** You just made a production ready VM cluster pretty dang fast. We didn't do HTTPS because I didn't want you to have to wait for the certificate to validate before we could use the cluster, but that shouldn't be something I need to walk you through since in the menu of the load balancer creation it does a good job of that.
 
 Don't forget to delete everything you made, the image, the instance template, instance group, instances, static IPs, and load balancer backend (different tab in load balancer menu), load balancer so you don't get caught in billing
-
-**[Let's go on to the next Module](../03-severless_functions)**

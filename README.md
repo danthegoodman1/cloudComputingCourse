@@ -63,17 +63,23 @@ I hope that if you are here, it's because you want to understand cloud computing
 **C1. [Case Study 1: Discord](/c1-discord)**
 
 6. [Docker Intro](/docker_intro)
-7. [RancherOS - Building your own Kubernetes Cluster](/rancher)
-8. [Intro to Full-text Search Indexing](/indexing)
-9. [Apache Solr](/apache-solr-indexing)
-10. [ElasticSearch](/elasticsearch)
-11. [Cassandra/Scylla](/cassandra-and-scylla)
-12. [Cassandra/Scylla Clustering](/scylla-clustering)
+7. [*RancherOS - Building your own Kubernetes Cluster](/rancher)
+8. [*Serverless Containers With Cloud Run](/cloud-run)
+9. [Intro to Full-text Search Indexing](/indexing)
+10. [Apache Solr](/apache-solr-indexing)
+11. [ElasticSearch](/elasticsearch)
+12. [Cassandra/Scylla](/cassandra-and-scylla)
+13. [Cassandra/Scylla Clustering](/scylla-clustering)
 
 **C2. [Case Study 2: SaaS](/c2-saas)**
 
-13. [Authentication and Logins](/authentication-with-jwt)
-14. [2FA - Securing the Cloud](/2fa)
+14. [Authentication and Logins](/authentication-with-jwt)
+15. [2FA - Securing the Cloud](/2fa)
+
+**P1. [Project 2: Secure Scalable Service](/p2-secure-scalable-service)**
+
+16. [*MongoDB](/mongodb)
+17. [*The Secure Development Life Cycle and CI/CD](/secure-development-life-cycle)
 
 <!-- 13. Secure Development Life Cycle (include dev keys vs. prod keys, secure token/api key handling) -->
 
@@ -96,4 +102,4 @@ I hope that if you are here, it's because you want to understand cloud computing
 
 Make a pull request!
 
-Make sure the `README.md` file is in a similar format to the ones you see in the first 0-12 modules
+Make sure the `README.md` file is in a similar format to the ones you see in the existing modules.

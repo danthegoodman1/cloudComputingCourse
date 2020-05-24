@@ -78,5 +78,3 @@ It's your first real assignment on your own: Create a main API with App Engine, 
 Make a simple request to a main API, and delegate to a (synthetic) long running task that will alert you after 1 minute with the same data that you sent in the initial request.
 
 _Hint: Why not make it a post request that will eventually alert you with the body of the request?_
-
-**Once you complete this, [we can move on to the next Module](../06-docker_intro)**
