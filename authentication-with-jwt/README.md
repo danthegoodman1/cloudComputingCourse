@@ -207,7 +207,7 @@ This will create a token that expires in 3 minutes.
 Now create this protected endpoint:
 
 ```js
-app.get('/protected', (req, res) => {
+app.get('/protected', (req, res) => { // Profile page, etc.
   const token = req.header('Authorization').split(' ')[1] // Authorization: Bearer token
   jwt.verify(token, 'secretkey', (err, decoded) => {
     if (err) {
@@ -239,6 +239,8 @@ In this module, we created a register route and stored user information securely
 By using JWTs instead of repeatedly sending username/password combos every time we make a request, we greatly increase security and simplicity of a service.
 
 #### Further Development
+
+There is something wrong with our implementation, and it's only a 1 character difference (kind of)... an `s`! It's totally insecure to have any sort of password process served over `http`. In a real implementation, `https` should be the first thing you implement.
 
 We could continue securing the service by adding in multi-factor authentication like rolling codes. We could also implement a refresh token feature which allows a user with a previously valid token to create a new valid token like OAuth2. However, this comes with certain vulnerabilities that greatly increase the risk in having a token stolen. Forcing someone to log back in is more secure, and it ensures they don't forget their login info!
 

@@ -5,6 +5,7 @@
 - [Why 2FA?](#why-2fa)
 - [Build your first 2FA app](#build-your-first-2fa-app)
 - [Protect Something with it](#protect-something-with-it)
+- [Further Development](#further-development)
 
 ## Why 2FA?
 
@@ -168,3 +169,7 @@ As you can see, the `otpath_url` is no more than the `base32` secret that we sav
 ```
 
 You could also create your own by just base32 encoding 32 random printable characters.
+
+## Further Development
+
+It should be clear how we could add this on to our JWT secured API. By storing their 2FA object in the DB, we can make this check during login as a second factor of authentication.
