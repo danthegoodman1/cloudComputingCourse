@@ -1,15 +1,23 @@
 # The Open-Source Cloud Computing Course
 Made with ❤️ by Dan The Goodman
 
-## What is this?
+## Who am I?
 
 Well, I'll introduce myself. My name is Dan Goodman and I am a Co-Founder, and Development Lead of Anchor Security Team, and Co-Founder and CTO of Manhattan Space, Inc. To keep my experience list short, I've worked as a security engineer intern Freshman year of college where I made some very serious contributions and additions to their code base _(NDA...)_. I am the Red Team Champion of the 2018 DoE Cyber Force Competition. I wrote the Delaware SBDC's (Small Business Development Center) cyber material, which won [national awards from NIST](https://csrc.nist.gov/Projects/FISSEA/Contests-and-Awards/FISSEA-SATE-Winners) _(2019 - Delaware SBDC – Data Assured Program)_, is used by 8+ (at time of writing) other state SBDC's, the SBA, and is considered best practices by the Deparment of Homeland Security. I am a programming and cloud computing nut, and spend every moment I can spare learning.
 
 So what does that mean? I've learned **a lot** about cloud computing. Through *(tens of?)* thousands of hours and my experiences with developing production-ready code that can "scale infinitely", pen-testing the hell out of everything I'm allowed to, and years of making my own Linux and virtualization rack-mount servers in my basement.
 
+## What is this Course?
+
 This course is designed for CPEG 473/673 Cloud Computing and Security, and to go in parallel with the Cloud Computing VIP program at the University of Delaware, so if I am skipping over topics or steps, it may be because I am showing them in class or video.
 
-I hope that through this course I can share my knowledge with you, and you can power-up in the amazing world that is cloud computing. Improve your skill set, put "Cloud Computing and Distributed Systems Engineer" on your resume, and flex on all of your developer friends.
+Here we will focus less on becoming Cloud platform experts, and more on the practical knowledge and skills required to launch your project or startup without having to hire dedicated cloud engineers. (Obviously at the scales of Twitter and Netflix infrastructure becomes so complex that you need many people just to manage infrastructure)
+
+These modules will get you started in all of the areas you need to build something real, and ship it. Whether you are launching a service as a tech startup, building a personal project, or are adding on a new product to an existing company, these modules will get you started.
+
+For much deeper dives into these topics check out linuxacademy.com for really detailed tutorials on each of the technologies.
+
+I hope that through this course I can share my knowledge with you, and you can power-up in the amazing world that is cloud computing. Improve your skill set, put "Cloud Computing" on your resume, and flex on all of your developer friends.
 
 Feel free to make a pull request! I'd love to add topics that I haven't yet covered or am not an expert enough in to teach yet.
 
