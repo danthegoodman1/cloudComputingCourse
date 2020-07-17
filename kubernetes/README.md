@@ -362,6 +362,14 @@ Using these in tandem allows for a highly elastic cluster to attend to the needs
 
 New pods come up near instantly, and new nodes take ~30s depending on the cloud provider.
 
+Ok let's apply it:
+
+`kubectl apply -f hpa.yaml`
+
+Depending on what you had your replicas as for the deployment (I like to make them the min of the HPA), you will see the HPA added and the replica count change.
+
+Run `kubectl get hpa` to verify.
+
 #### Clean Up
 
 Now if you are done with DO, you can delete the container registry, the load balancer, and the cluster to prevent any more charges.
