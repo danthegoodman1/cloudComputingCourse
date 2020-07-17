@@ -16,8 +16,8 @@
     - [Create the Deployment](#create-the-deployment)
   - [Ingress and Load Balancing](#ingress-and-load-balancing)
     - [HTTPS Load Balancing](#https-load-balancing)
+    - [Resources](#resources)
     - [Autoscaling](#autoscaling)
-      - [RESOURCES???](#resources)
     - [Clean Up](#clean-up)
 - [Google Kubernetes Engine](#google-kubernetes-engine)
   - [Create your Cluster](#create-your-cluster-1)
@@ -276,17 +276,9 @@ metadata:
 ...
 ```
 
-#### Autoscaling
+#### Resources
 
-_Here we go..._
-
-There are 2 levels of autoscaling in k8s: `node autoscaling (NA)` and `horitzonal pod autoscaling (HPA)`
-
-HPA creates more pods as required (more replicas), while NA creates more nodes when we don't have enough resources for more pods.
-
-##### RESOURCES???
-
-Yep. Something super duper important that I haven't introduced you to yet in your deployment. When it comes to resources, you have `limit` and `requests`. If you only specify one, the other will assume the same config as the other. **Never have none.**
+Something super duper important that I haven't introduced you to yet in your deployment. When it comes to resources, you have `limit` and `requests`. If you only specify one, the other will assume the same config as the other. **Never have none.**
 
 Let's modify our `deployment.yaml` file a bit:
 
@@ -315,7 +307,13 @@ We don't want to give our deployment all of the cpu and mem, because we have oth
 
 Express tends to be far more CPU heavy than memory heavy anyway. To determine these requests and limits you have to run your app under some load and determine a good base level for what you need, and what your limits should be. Express also loves consuming about a single core (vs. 2 on half a core).
 
-**Back to autoscaling.**
+#### Autoscaling
+
+_Here we go..._
+
+There are 2 levels of autoscaling in k8s: `node autoscaling (NA)` and `horitzonal pod autoscaling (HPA)`
+
+HPA creates more pods as required (more replicas), while NA creates more nodes when we don't have enough resources for more pods.
 
 In the DO dashboard for k8s, go into your node pool and with the `...` enable autoscaling. This will add nodes when there are more pods scheduled than there are resources available in the node pool.
 
