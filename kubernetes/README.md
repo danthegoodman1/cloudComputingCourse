@@ -1,4 +1,6 @@
-# Kubernetes with Google Kubernetes Engine <!-- omit in toc -->
+# Kubernetes with DigitalOcean and Google Kubernetes Engine <!-- omit in toc -->
+
+![tenor](/assets/tenor.gif)
 
 *It wouldn't be a cloud class if we didn't do Kubernetes.*
 
@@ -308,8 +310,6 @@ We don't want to give our deployment all of the cpu and mem, because we have oth
 Express tends to be far more CPU heavy than memory heavy anyway. To determine these requests and limits you have to run your app under some load and determine a good base level for what you need, and what your limits should be. Express also loves consuming about a single core (vs. 2 on half a core).
 
 #### Autoscaling
-
-_Here we go..._
 
 There are 2 levels of autoscaling in k8s: `node autoscaling (NA)` and `horitzonal pod autoscaling (HPA)`
 
