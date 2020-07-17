@@ -10,6 +10,17 @@
 - [DigitalOcean](#digitalocean)
   - [Create your Cluster](#create-your-cluster)
   - [Install and Configure `kubectl`](#install-and-configure-kubectl)
+  - [Deployments](#deployments)
+    - [Setup](#setup)
+    - [Create the Container](#create-the-container)
+    - [Create the Deployment](#create-the-deployment)
+  - [Ingress and Load Balancing](#ingress-and-load-balancing)
+    - [HTTPS Load Balancing](#https-load-balancing)
+    - [Autoscaling](#autoscaling)
+      - [RESOURCES???](#resources)
+    - [Clean Up](#clean-up)
+- [Google Kubernetes Engine](#google-kubernetes-engine)
+  - [Create your Cluster](#create-your-cluster-1)
 
 ## Requirements for this
 
@@ -58,8 +69,6 @@ Go to DO, and make a new project. In that project create a cluster.
 
 Make the cluster 3 of the cheapest nodes (`$10/month` each at time of writing). One node pool (this is default), and give both the pool and the cluster names something a littler easier to identify. So you can copy commands, name the pool: `pool-learning` and the cluster: `k8s-learning`.
 
-Nodes will automatically be tagged with both these names.
-
 Now we continue while we wait 800 years (like 4 minutes) for that cluster to create.
 
 ### Install and Configure `kubectl`
@@ -82,3 +91,283 @@ export KUBECONFIG=$(PWD)/[name_of_file]
 ```
 
 Use this terminal window for the rest of the lesson, or re run that command if you close it/switch. That env. var only lives in this `tty`.
+
+When it is ready, you should be able to run `kubectl get nodes` and see your running nodes:
+
+```
+NAME                  STATUS   ROLES    AGE     VERSION
+pool-learning-3jqu7   Ready    <none>   2m52s   v1.18.3
+pool-learning-3jquc   Ready    <none>   2m41s   v1.18.3
+pool-learning-3jqum   Ready    <none>   2m41s   v1.18.3
+```
+
+### Deployments
+
+In Kubernetes, a workload is based on a `deployment`. Deployments determine what resources are allocated to a workload, how many replicas of a pod there are, and what that pod is. Deployments are one of the levels of abstractions from simple VMs in a cluster.
+
+We can create these deployments with `kubectl`, or more preferably, using `.yaml` files.
+
+#### Setup
+
+Let's create a `deployment.yaml` file now and fill it with some goodies.
+
+Scratch that... lets make an app first.
+
+Go ahead and create a simple express app like so:
+_You should know how to install everything to get this running_
+
+```js
+const app = require('express')()
+const cors = require('cors')
+app.use(cors())
+
+app.get('/', (req, res) => {
+  console.log('I got: request on root')
+  res.send('Hello from root!')
+})
+
+app.get('/test', (req, res) => {
+  console.log('I got: request on /test')
+  res.send('Hello from /test!')
+})
+
+app.listen(8080, () => {
+  console.log('Listening on port 8080')
+})
+```
+
+We also need to create a `Dockerfile`:
+
+```docker
+FROM node:12-slim
+
+# Create and change to the app directory.
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . ./
+
+CMD [ "npm", "start" ]
+```
+
+#### Create the Container
+
+Now we need to make a container and host it on a DigialOcean private container registry.
+
+In DO go to the `Images` tab on the left, `Container Registry`, and make one.
+
+Then we need to tell out cluster that it is allowed to access our registry.
+
+run `doctl registry login`
+
+then `doctl registry kubernetes-manifest | kubectl apply -f -`
+
+This creates a Kubernetes 'secret' that tells it how to fetch our containers later.
+
+Finally, we tell the cluster to apply this secret to all of our `yaml` files:
+
+`kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "registry-testime"}]}'`
+
+Now we need to build out container:
+
+run `docker build -t testcontainer .` where `testcontainer` is the name of our new container.
+
+Now we can push it up to our container registry:
+`docker tag testcontainer registry.digitalocean.com/testime/testcontainer`
+`docker push registry.digitalocean.com/testime/testcontainer`
+
+Where `testime` is the name of your registry.
+
+#### Create the Deployment
+
+Now we can attend to our `deployment.yaml` file.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testcontainer
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: testcontainer
+  template:
+    metadata:
+      labels:
+        app: testcontainer
+    spec:
+      containers:
+      - name: testcontainer-deployment
+        image: registry.digitalocean.com/testime/testcontainer
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+```
+
+Let's explain this a little:
+
+We want to create a `Deployment` with the name `testcontainer`. We want `3` replicas of this container running by default, and we are setting the selector to `testcontainer` (this is how we reference the deployment in other services, as you will see).
+
+The template for our deployment is based on our `testcontainer` container, and we are calling it `testcontainer-deployment`. We also want to open `TCP` port `8080`.
+
+We can tell our cluster to apply this Deployment by running:
+`kubectl apply -f deployment.yaml`
+
+We can verify this by running:
+
+`kubectl get deployments`
+
+and we should see our deployment name, and after some time we should have `3/3` `READY`
+
+### Ingress and Load Balancing
+
+Now we want to be able to access our deployment with a LoadBalancer Service or Ingress. On DO, we can create a load balancer right away. Create a `lb.yaml` file:
+
+```yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: testcontainer
+spec:
+  type: LoadBalancer
+  selector:
+    app: testcontainer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+```
+
+This service will create a load balancer that redirects any port `80` to `testcontainer`'s port `8080`.
+
+Apply with `kubectl apply -f lb.yaml`
+
+Then run `kubectl get service` and we should have a new service with the name specified in the `lb.yaml`
+
+We can see the Load Balancer being created in the DO dashboard, and when it gets a IPv4 we are ready to hit it:
+
+`curl [your_ip]`
+
+Result:
+
+`Hello from root!%`
+
+#### HTTPS Load Balancing
+
+To do this you would need to add a domain to DO. Then, you need to create a certificate they maintain (unless you want to use your own).
+
+Now you can either create the HTTPS rule in the load balancer in the dashboard (forward to the same random port), or you can add the following to your `lb.yaml` file:
+
+```yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: testcontainer
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-algorithm: "round_robin"
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "your-certificate-id"
+...
+```
+
+#### Autoscaling
+
+_Here we go..._
+
+There are 2 levels of autoscaling in k8s: `node autoscaling (NA)` and `horitzonal pod autoscaling (HPA)`
+
+HPA creates more pods as required (more replicas), while NA creates more nodes when we don't have enough resources for more pods.
+
+##### RESOURCES???
+
+Yep. Something super duper important that I haven't introduced you to yet in your deployment. When it comes to resources, you have `limit` and `requests`. If you only specify one, the other will assume the same config as the other. **Never have none.**
+
+Let's modify our `deployment.yaml` file a bit:
+
+```yaml
+spec:
+  containers:
+  - name: testcontainer-deployment
+    image: registry.digitalocean.com/testtime/testcontainer
+    resources:
+      requests: # Guaranteed, keep high enough to trigger autoscaling
+        memory: "128M" # if exceeded, the pod could be evicted if the node runs out of memory for critical stuff
+        cpu: "700m" # Average at load
+      limit: # throttled (cpu is compressable resources) or killed (mem) at, could omit and raise requests
+        memory: "256M" # kills if exceeded, will be restarted
+        cpu: "900m" # will not be killed, will be throttled, this preserves 10% per cpu for other stuff
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+```
+
+Let's talk about 2 things: `cpu` and `memory`
+
+`cpu` is known as a compressible resource, meaning we can throttle it when it is asking for more cpu. `memory` on the other hand is not, and when it is asking for more than we allowed it, that pod will get killed and restarted. The `cpu` are in units of `millicpus` -> `1000m = 1 core`.
+
+We don't want to give our deployment all of the cpu and mem, because we have other stuff running on the cluster as well (like k8s...). This is why DO tells you that 'usable' portion of memory, they prevent you from using what the cluster requires by default. GKE and AWS's EKS, not so much.
+
+Express tends to be far more CPU heavy than memory heavy anyway. To determine these requests and limits you have to run your app under some load and determine a good base level for what you need, and what your limits should be. Express also loves consuming about a single core (vs. 2 on half a core).
+
+**Back to autoscaling.**
+
+In the DO dashboard for k8s, go into your node pool and with the `...` enable autoscaling. This will add nodes when there are more pods scheduled than there are resources available in the node pool.
+
+What is scheduled?
+
+It means when your HPA asks for more pods to be created, but based on your requests the node pool can't spare any more resources. the NA adds nodes to give your cluster more resources.
+
+So let's make an HPA
+
+create a file called `hpa.yaml` and fill it like so:
+
+```yaml
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: testcontainer
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: testcontainer
+  minReplicas: 2
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 70 # Trigger autoscale
+```
+
+A few things to note:
+
+The formula for how many pods should exists is as follows:
+
+`desiredReplicas = ceil[currentReplicas * ( currentMetricValue / desiredMetricValue )]`
+
+From kubernetes.io:
+
+_For example, if the current metric value is `200m`, and the desired value is `100m`, the number of replicas will be doubled, since `200.0 / 100.0 == 2.0`_
+
+Here `desiredMetricValue` is the `targetAverageUtilization`, and any time we jump over a multiple of that value we add a new pod. Any time we jump below a multiple we drop a pod.
+
+Using these in tandem allows for a highly elastic cluster to attend to the needs of your traffic quite quickly.
+
+New pods come up near instantly, and new nodes take ~30s depending on the cloud provider.
+
+#### Clean Up
+
+Now if you are done with DO, you can delete the container registry, the load balancer, and the cluster to prevent any more charges.
+
+## Google Kubernetes Engine
+
+Let's get it.
+
+### Create your Cluster
