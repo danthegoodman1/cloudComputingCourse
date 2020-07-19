@@ -1,7 +1,5 @@
 # Kubernetes with DigitalOcean and Google Kubernetes Engine <!-- omit in toc -->
 
-![tenor](/assets/tenor.gif)
-
 *It wouldn't be a cloud class if we didn't do Kubernetes.*
 
 ## Table of Contents <!-- omit in toc -->
@@ -23,12 +21,21 @@
     - [Clean Up](#clean-up)
 - [Google Kubernetes Engine](#google-kubernetes-engine)
   - [Create your Cluster](#create-your-cluster-1)
+  - [Configure `kubectl` for your cluster](#configure-kubectl-for-your-cluster)
+  - [Deploy to Cluster](#deploy-to-cluster)
+  - [Ingress and Load Balancing](#ingress-and-load-balancing-1)
+    - [Load Balancing](#load-balancing)
+    - [HTTPS Load Balancing](#https-load-balancing-1)
+    - [Autoscaling](#autoscaling-1)
+  - [Cleaning Up](#cleaning-up)
 
 ## Requirements for this
 
 - Node.JS (and npm)
 - Docker
-- kubectl
+- `kubectl`
+- `doctl`
+- `gcloud` cli utility
 - A DigitalOcean account
 - a GCP account and project with billing enabled
 
@@ -293,7 +300,7 @@ spec:
       requests: # Guaranteed, keep high enough to trigger autoscaling
         memory: "128M" # if exceeded, the pod could be evicted if the node runs out of memory for critical stuff
         cpu: "700m" # Average at load
-      limit: # throttled (cpu is compressable resources) or killed (mem) at, could omit and raise requests
+      limits: # throttled (cpu is compressable resources) or killed (mem) at, could omit and raise requests
         memory: "256M" # kills if exceeded, will be restarted
         cpu: "900m" # will not be killed, will be throttled, this preserves 10% per cpu for other stuff
     ports:
@@ -335,13 +342,15 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: testcontainer
-  minReplicas: 2
-  maxReplicas: 3
+  minReplicas: 1 # min number of nodes (one for each node)
+  maxReplicas: 3 # Same max nodes in node autoscaler*cores
   metrics:
   - type: Resource
     resource:
       name: cpu
-      targetAverageUtilization: 70 # Trigger autoscale
+      target:
+        type: Utilization
+        averageUtilization: 70
 ```
 
 A few things to note:
@@ -374,6 +383,154 @@ Now if you are done with DO, you can delete the container registry, the load bal
 
 ## Google Kubernetes Engine
 
-Let's get it.
+Let's get it. Create a project, make sure `gcloud` is installed.
+
+_you may have to run `gcloud components install kubectl`_ if your `kubectl` isn't playing nice with gcloud.
 
 ### Create your Cluster
+
+Go to Kubernetes Engine, let the API enable, and create your cluster. Most things can be default, except a few things to ensure:
+
+- Use the newest version of the `Static version`
+- Use `N1` nodes (cheapest)
+- Enabled autoscaling (1 min, 3 max)
+
+**Create**
+
+now we wait...
+
+### Configure `kubectl` for your cluster
+
+Once your cluster is created, we can use `gcloud` to setup `kubectl`. Make sure you clear out your `KUBECONFIG` env var.
+
+We need to login with `gcloud`, and tell it to use our new project by running:
+`gcloud config set project [project-name]`
+
+Where `[project-name]` is the id of the project (not the name you gave it)
+
+We also need to run `gcloud config set compute/zone ZONE` and `gcloud config set compute/region REGION` based on where we made the cluster.
+
+Now we need to get the configuration with `gcloud container clusters get-credentials [cluster-name]`
+
+We can verify this worked with `kubectl config currnet-context`
+
+### Deploy to Cluster
+
+Now we don't even have to build our container if we don't want, we can let the cli do that for us (You can use `gcloud` and `docker` to manually build and submit the container if you want).
+
+Run `gcloud builds submit --tag gcr.io/[PROJECT-NAME]/testcontainer .`
+
+`testcontainer` is going to be the name of our container for the rest of the tutorial.
+
+Now let's create our new `deployment.yaml`:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testcontainer-deployment
+  labels:
+    app: testcontainer-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: testcontainer-deployment
+  template:
+    metadata:
+      labels:
+        app: testcontainer-deployment
+    spec:
+      containers:
+      - name: testcontainer-deployment
+        # Replace $GCLOUD_PROJECT with your project ID
+        image: gcr.io/$GCLOUD_PROJECT/testcontainer:latest
+        # This app listens on port 8080 for web traffic by default.
+        resources:
+          requests: # Guaranteed, keep high enough to trigger autoscaling
+            memory: "128M" # if exceeded, the pod could be evicted if the node runs out of memory for critical stuff
+            cpu: "700m" # should be based on average usage of well balanced cluster, high enough prevent more than 1 per CPU (ex with 2 cpu 3x700 = 2100 > 2000)
+          limits: # throttled (cpu is compressible resources) or killed (mem) at, could omit and raise requests
+            memory: "256M" # kills if exceeded, will be restarted, make ~60% of ram per node/cores per node or set to prevent runaways
+            cpu: "900m" # will not be killed, will be throttled, preserve 10% per cpu for other stuff
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
+```
+
+Then `kubectl apply -f deployment.yaml`
+
+### Ingress and Load Balancing
+
+#### Load Balancing
+
+Let's make a normal load balancer for the service, make a file `lbg.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: testcontainer-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: testcontainer-deployment
+  ports:
+  - port: 80
+    targetPort: 8080
+```
+
+Run `kubectl apply -f lkg.yaml` and wait for it to get a `EXTERNAL-IP` from `kubectl get service`
+
+Then run `curl [your_ip]` and we should see good output!
+
+#### HTTPS Load Balancing
+
+You need to have a domain name to do this, so we won't practice, but I'll drop in the links:
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs#setting_up_the_managed_certificate
+
+https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer#step_3_create_an_ingress_resource
+
+Basically you need to merge in the certificate specific stuff from the first link, into the load balancer from the second link.
+
+You also can make a HTTPS load balancer from the k8s dashboard as well in GCP. You could actually enable HTTPS for the Load Balancer we created in the previous section from the dashboard as well.
+
+For using the NodePort method for HTTPS you will still need to make that `ManagedCertificate` explained in the first link.
+
+#### Autoscaling
+
+We've already got the NA applied, now we just need the HPA. Make an `hpa.yaml` file:
+
+```yaml
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: testcontainer-deployment
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: testcontainer-deployment
+  minReplicas: 1 # min number of nodes (one for each node)
+  maxReplicas: 3 # Same max nodes in node autoscaler*cores
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+```
+
+Now we can check with `kubectl get hpa` and `kubectl get pods`.
+
+**Question:** Why do we have 3 replicas if our HPA only requires us to have 1 right now? Why do we have 3 nodes if our NA requires only 1 right now?
+
+**Answer:** Until the scaling up needs to happen, the set replicas and nodes basically becomes a floor. You can solve this by setting the amount of nodes we created, or the replicas to the floor of the autoscaler. That will have it drop back down to the floor before it needs to rise first.
+
+### Cleaning Up
+
+All we have to do is delete the project. Everything inside will delete and you will no longer be billed.
