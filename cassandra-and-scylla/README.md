@@ -175,7 +175,7 @@ CREATE TABLE extable (
 ) WITH comment='this is a comment'
 ```
 
-*You can always edit what columns are in the schema later on with the `ALTER TABLE` command. See: [https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cqlAlterTable.html](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cqlAlterTable.html)*
+*You can always edit columns in the schema later on with the `ALTER TABLE` command. See: [https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cqlAlterTable.html](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_reference/cqlAlterTable.html)*
 
 *See [https://cassandra.apache.org/doc/3.11.6/cql/ddl.html#create-table](https://cassandra.apache.org/doc/3.11.6/cql/ddl.html#create-table) on PRIMARY KEYs and Compound PRIMARY KEYs.*
 
