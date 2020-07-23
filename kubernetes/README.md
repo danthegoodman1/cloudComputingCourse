@@ -66,6 +66,14 @@ _Elasticity, Availability, and Security baked right in._
 
 _At least better than running without K8s_
 
+Here is a good summary of why k8s is awesome:
+
+1) **Open Source:** You can put your code anywhere k8s can run. It can be on any cloud provider. **You are never locked in to a certain cloud provider** holding your VM images or configurations. K8s is supported on all major cloud providers, and can by run on prem, or both!
+2) **Scale and Elasticity:** K8s manages your infrastructure for you. It scales it up and down, kills bad nodes and pods and replaces them with new ones, and always works as hard as it can to make sure your app stays running.
+3) **Modularity:** You can put any workload you want, and as many as you can fit on your cluster. Your cluster is no longer just a collection of VMs, but a pool of total compute power (number of CPUs, GBs of RAM). You can also support anything that could possibly run in a Docker container.
+4) **DevOps:** Updates and version routing become easier. You can route certain requests to certain deployments, so you can host legacy versions of software and also do rolling updates to ensure everything is fine before you push everything to production.
+5) **Industry Standard:** Because of the above 4 reasons, k8s has quickly become the industry standard for running modern apps in the cloud. Whether it be an API, a high traffic website, or service workers. K8s can handle it all.
+
 ## Getting Started
 
 We are going to start in DigitalOcean, then move our way into Google Cloud Platform. Both are totally acceptable for production environments at this point, DO has been killing it.
