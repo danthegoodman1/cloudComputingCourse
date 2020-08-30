@@ -498,7 +498,9 @@ Then run `curl [your_ip]` and we should see good output!
 
 You need to have a domain name to do this, so we won't practice, but I'll drop in the links:
 
-https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs#setting_up_the_managed_certificate
+https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
 
 https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer#step_3_create_an_ingress_resource
 
