@@ -496,13 +496,15 @@ Then run `curl [your_ip]` and we should see good output!
 
 #### HTTPS Load Balancing
 
+For HTTPS load balancing on GKE, best practice is to expose a workload using a `NodePort` service, then instructing an `Ingress` to point to the `NodePort` service. This will tell GKE to generate a load balancer in the process (see steps 3 & 4 of the managed-certs link).
+
 You need to have a domain name to do this, so we won't practice, but I'll drop in the links:
 
 https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer
 
 https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
 
-https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer#step_3_create_an_ingress_resource
+https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer
 
 Basically you need to merge in the certificate specific stuff from the first link, into the load balancer from the second link.
 
