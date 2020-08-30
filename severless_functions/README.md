@@ -8,6 +8,7 @@
 - [Writing Your First Serverless Function](#writing-your-first-serverless-function)
 - [A More Advanced Serverless Function](#a-more-advanced-serverless-function)
 - [Cold Starts](#cold-starts)
+- [Static IP Addresses](#static-ip-addresses)
 
 ## What is Serverless?
 
@@ -93,3 +94,7 @@ Now you can begin to see the power of Serverless Function. My most frequent use 
 ## Cold Starts
 
 After a few minutes, a function will go idle. This means that there is a 7-8 second delay between when a request or event triggers a function, and it actually executing. Think how you might be able to get around this (at least in the HTTPS case).
+
+## Static IP Addresses
+
+In some cases you may want to have a static IP so you can call services which whitelist IP addresses: [See this](https://cloud.google.com/functions/docs/networking/network-settings#associate-static-ip)
