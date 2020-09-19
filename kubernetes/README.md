@@ -28,6 +28,7 @@
     - [HTTPS Load Balancing](#https-load-balancing-1)
     - [Autoscaling](#autoscaling-1)
   - [Cleaning Up](#cleaning-up)
+- [AWS](#aws)
 
 ## Requirements for this
 
@@ -546,3 +547,12 @@ Now we can check with `kubectl get hpa` and `kubectl get pods`.
 ### Cleaning Up
 
 All we have to do is delete the project. Everything inside will delete and you will no longer be billed.
+
+## AWS
+
+I've not added AWS yet for 2 reasons:
+
+1. It's mostly the same once you get to the k8s part
+2. I've not bothered to do it
+
+In any case, here is the HTTPS load balancing example they provide: https://aws.amazon.com/premiumsupport/knowledge-center/terminate-https-traffic-eks-acm/
