@@ -41,7 +41,7 @@ Add Cassandra repo keys:
 Update repos:
 `sudo apt-get update`
 
-Install Cassandra:
+Install Scylla:
 `sudo apt-get install scylla`
 
 Set Java Release:
