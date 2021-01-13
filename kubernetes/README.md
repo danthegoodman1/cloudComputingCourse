@@ -183,6 +183,8 @@ run `doctl registry login`
 
 then `doctl registry kubernetes-manifest | kubectl apply -f -`
 
+and finally `doctl kubernetes cluster kubeconfig save <use_your_cluster_name>` (make sure your ~/.kube folder exists first)
+
 This creates a Kubernetes 'secret' that tells it how to fetch our containers later.
 
 Finally, we tell the cluster to apply this secret to all of our `yaml` files:
